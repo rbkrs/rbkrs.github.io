@@ -28,14 +28,14 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#projects">Projects</a></li> <!-- Renamed from "Thesis Projects" -->
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
             <!-- Add more categories if needed -->
         </ul>
     </nav>
 
     <section id="home">
         <h2>Home Page</h2>
-        <!-- Add content for your home page -->
         <p>Introduce yourself and your expertise in computer science.</p>
         <p>Include a professional photo, tagline, and call-to-action.</p>
     </section>
@@ -45,18 +45,51 @@
         <!-- Add content for your portfolio -->
     </section>
 
-    <section id="projects"> <!-- Renamed section for general projects -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <ul>
+                <li><i class="bx bxl-python"></i> Python</li>
+                <li><i class="bx bxl-r"></i> R</li>
+            </ul>
+        </div>
+        <div class="skill-category">
+            <h3>Libraries/Frameworks</h3>
+            <ul>
+                <li><i class="bx bxl-pandas"></i> Pandas</li>
+                <li><i class="bx bxl-matplotlib"></i> Matplotlib</li>
+                <li><i class="bx bxl-numpy"></i> NumPy</li>
+                <li><i class="bx bxl-pytorch"></i> PyTorch</li>
+                <li><i class="bx bxl-scikit-learn"></i> scikit-learn</li>
+                <li><i class="bx bxl-tensorflow"></i> TensorFlow</li>
+                <li><i class="bx bxl-keras"></i> Keras</li>
+                <li><i class="bx bxl-scipy"></i> SciPy</li>
+            </ul>
+        </div>
+        <div class="skill-category">
+            <h3>Databases</h3>
+            <ul>
+                <li><i class="bx bxl-mysql"></i> MySQL</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="projects"> <!-- Section for general projects -->
         <h2>Projects</h2>
         <ul>
-            <li><a href="/DS/thesis/randomforest.html">Random Forest (Thesis)</a></li> <!-- Included thesis project -->
-            <li><a href="/DS/thesis/neuralnetwork.html">Neural Network (Thesis)</a></li> <!-- Included thesis project -->
+            <li><a href="#thesis-projects">Thesis Projects</a></li> <!-- Link to the thesis projects subsection -->
             <li><a href="/projects/project1.html">Project 1</a></li>
             <li><a href="/projects/project2.html">Project 2</a></li>
             <!-- Add more links to other projects -->
         </ul>
+        <h3 id="thesis-projects">Thesis</h3>
+        <ul>
+            <li><a href="/DS/thesis/randomforest.html">Random Forest</a></li> <!-- Included thesis project -->
+            <li><a href="/DS/thesis/neuralnetwork.html">Neural Network</a></li> <!-- Included thesis project -->
+        </ul>
     </section>
-
-    <!-- Add more sections for other categories if needed -->
 
     <footer>
         <p>&copy; 2024 Rob Kras. All rights reserved.</p>
@@ -66,4 +99,3 @@
     <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16"></script>
 </body>
 </html>
-
