@@ -1,65 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+html {
+    overflow-x: hidden;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
-    background-color: rgb(238, 238, 238);
+    background-color: #f5f5f5; /* Off-white background */
     color: rgb(34, 40, 49);
 }
 
-header {
-    background-color: rgb(34, 40, 49);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-nav {
-    background-color: rgb(57, 62, 70);
-    padding: 20px;
-    border-bottom: 1px solid rgb(34, 40, 49);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-nav h2 {
-    margin-bottom: 10px;
-    color: #fff;
-    font-weight: bold;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    margin-bottom: 10px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: rgb(238, 238, 238);
-    font-weight: bold;
-    transition: color 0.3s ease;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 2px;
-}
-
-nav ul li a:hover {
-    color: rgb(0, 173, 181);
-    border-bottom-color: rgb(0, 173, 181);
-}
-
-section {
-    padding: 20px;
-}
-
 footer {
-    background-color: rgb(34, 40, 49);
-    color: #fff;
+    padding: 10px 0;
+    background-color: #ddd; /* Light gray */
+    color: #333; /* Dark gray text */
     text-align: center;
-    padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
     font-size: 14px;
+}
+
+header {
+    top: 0;
+    width: 100%;
+    background-color: rgb(34, 40, 49);
+    color: #fff; /* White text */
+    padding: 40px 0; /* Add padding to top and bottom */
+    text-align: center; /* Center align the content inside header */
+}
+
+.container {
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add some padding to the sides */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px; /* Adjust as needed */
+}
+
+header p {
+    margin: 10px 0;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+main {
+    padding-top: 20px; /* Add space at the top of main for better mobile view */
+    padding-left: 20px;
+}
+
+main section {
+    margin-bottom: 20px; /* Add space between sections */
+}
+
+main section h2 {
+    color: #333; /* Dark gray */
+    padding: 1px;
+}
+
+main section h3 {
+    margin: 0;
+    padding: 0;
+}
+
+main section p {
+    margin: 10px 0; /* Add margin to paragraphs */
+}
+
+main section a {
+    text-decoration: none; /* Remove underline from links */
+    color: #010203; /* Blue link color */
+}
+
+main .projects {
+    padding-left: 1em;
+}
+
+main section a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+#initial { 
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.contact a {
+    display: block; /* Make links block-level for better spacing */
+    margin-bottom: 5px; /* Add margin between contact links */
+    color: #27274b; /* Blue link color */
+}
+
+.contact a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Media Queries for responsiveness */
+
+/* For devices with a maximum width of 768px (tablets and smaller screens) */
+@media only screen and (max-width: 768px) {
+    header h1 {
+        font-size: 24px; /* Decrease font size for smaller screens */
+    }
+    
+    header {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+/* For devices with a maximum width of 576px (smaller mobile phones) */
+@media only screen and (max-width: 576px) {
+    header h1 {
+        font-size: 20px; /* Further decrease font size for smaller screens */
+    }
+
+    header {
+        width: 100%;
+        padding: 20px;
+    }
+
+    footer {
+        padding: 2px;
+    }
 }
