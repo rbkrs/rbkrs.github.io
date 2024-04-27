@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RK</title>
+    <title>RK Portfolio</title>
     <link href="styles.css" type="text/css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134429162-1"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.addEventListener("DOMContentLoaded", function() {
+            const scroll = new SmoothScroll('a[href*="#"]');
+        });
+    </script>
 </head>
 
 <body>
@@ -39,5 +45,8 @@
     <footer>
         <p>&copy; 2024 Rob Kras. All rights reserved.</p>
     </footer>
+
+    <!-- Smooth scroll library -->
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16"></script>
 </body>
 </html>
