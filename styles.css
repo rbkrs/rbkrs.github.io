@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 html {
-    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 body {
@@ -12,24 +12,30 @@ body {
     color: rgb(34, 40, 49);
 }
 
-footer {
-    padding: 10px 0;
-    background-color: #ddd; 
-    color: #333;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: 14px;
+.user {
+    padding-bottom: 2em;
 }
 
-header {
-    top: 0;
-    width: 100%;
-    background-color: rgb(34, 40, 49);
-    color: #fff; 
-    padding: 40px 0; 
-    text-align: center;
+nav {
+    background-color: #b5b5b5;
+    display: inline-block;
+    min-height: 120vh;
+    width: 25vh;
+    float: left;
+}
+
+a {
+    text-decoration: none;
+    color: #27274b;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    text-decoration: none;
 }
 
 .container {
@@ -38,64 +44,12 @@ header {
     margin: 0 auto; 
 }
 
-header h1 {
-    padding: 0;
-    font-size: 28px; 
-}
-
 main {
-    padding-top: 20px; 
-    padding-left: 20px;
+    padding-top: 12.5vh;
+    width: 50%;
+    margin: auto;
 }
 
-main section {
-    margin-bottom: 20px;
-}
-
-main section h2 {
-    color: #333;
-    padding: 1px;
-}
-
-main section h3 {
-    margin: 0;
-    padding: 0;
-}
-
-main section p {
-    margin: 10px 0;
-}
-
-main section a {
-    text-decoration: none;
-    color: #010203;
-}
-
-main .projects {
-    padding-left: 1em;
-}
-
-main section a:hover {
-    text-decoration: underline;
-}
-
-#initial { 
-    margin-top: 20px;
-}
-
-.contact a {
-    display: block;
-    margin-bottom: 5px;
-    color: #27274b;
-}
-
-.contact a:hover {
-    text-decoration: underline; 
-}
-
-/* Media Queries for responsiveness */
-
-/* For devices with a maximum width of 768px (tablets and smaller screens) */
 @media only screen and (max-width: 768px) {
     header h1 {
         font-size: 24px;
@@ -109,7 +63,6 @@ main section a:hover {
 
 }
 
-/* For devices with a maximum width of 576px (smaller mobile phones) */
 @media only screen and (max-width: 576px) {
     header h1 {
         font-size: 20px;
