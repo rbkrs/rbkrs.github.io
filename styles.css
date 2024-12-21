@@ -12,16 +12,23 @@ body {
     color: rgb(34, 40, 49);
 }
 
-.user {
-    padding-bottom: 2em;
-}
-
 nav {
     background-color: #b5b5b5;
-    display: inline-block;
     min-height: 120vh;
-    width: 25vh;
+    width: 15%;
     float: left;
+    text-align: center;
+}
+
+.contact {
+    text-decoration: none;
+    text-align: left;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.user {
+    padding: 1em 0 2.5em;
 }
 
 a {
@@ -33,48 +40,48 @@ a:hover {
     text-decoration: underline;
 }
 
-ul {
-    list-style-type: none;
-    text-decoration: none;
-}
-
 .container {
     width: 100%;
     max-width: 800px; 
     margin: 0 auto; 
 }
 
+.small-contact { display: none; }
+
 main {
-    padding-top: 12.5vh;
-    width: 50%;
+    padding: 5% 1.5%;
+    width: 55%;
+    max-height: calc(100vh - 20px); /* Adjust based on other elements' heights */
     margin: auto;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    box-sizing: border-box; 
+    border: 1px solid black;
 }
 
 @media only screen and (max-width: 768px) {
-    header h1 {
-        font-size: 24px;
-        margin: 0;
-        padding: 0;
-    }
-    
-    header {
-        width: 100%;
+    nav {
+        display: none;
     }
 
+    .small-contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .small-contact span {
+        padding: 1em;
+    }
+
+    main {
+        width: 100%;
+        max-height: calc(100vh - 65px); /* Adjust based on other elements' heights */
+    }
 }
 
 @media only screen and (max-width: 576px) {
-    header h1 {
-        font-size: 20px;
-        margin: 0;
-        padding: 0;
-    }
-
-    header {
-        width: 100%;
-    }
-
-    footer {
-        padding: 2px;
+    main {
+        padding: 5%;
     }
 }
