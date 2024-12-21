@@ -51,12 +51,11 @@ a:hover {
 main {
     padding: 5% 1.5%;
     width: 55%;
-    max-height: calc(100vh - 20px); /* Adjust based on other elements' heights */
+    max-height: calc(100vh - 0px); /* Adjust based on other elements' heights */
     margin: auto;
     overflow-y: auto; 
     overflow-x: hidden; 
     box-sizing: border-box; 
-    border: 1px solid black;
 }
 
 @media only screen and (max-width: 768px) {
