@@ -15,7 +15,7 @@ body {
 nav {
     background-color: #b5b5b5;
     min-height: 120vh;
-    width: 15%;
+    width: 12.5%;
     float: left;
     text-align: center;
 }
@@ -49,9 +49,8 @@ a:hover {
 .small-contact { display: none; }
 
 main {
-    padding: 5% 1.5%;
+    padding: 2.5% 1.5%;
     width: 55%;
-    max-height: calc(100vh - 0px); /* Adjust based on other elements' heights */
     margin: auto;
     overflow-y: auto; 
     overflow-x: hidden; 
@@ -67,6 +66,8 @@ main {
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 15px;
+        border-bottom: 1px solid black;
     }
 
     .small-contact span {
