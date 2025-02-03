@@ -57,8 +57,8 @@ nav {
 
 main {
     padding: 2.5% 1.5%;
-    width: 55%;
-    margin: auto;
+    width: 70%;
+    margin: 0;
     overflow-y: auto; 
     overflow-x: hidden; 
     box-sizing: border-box; 
@@ -86,7 +86,11 @@ main {
 }
 
 ul {
-    list-style-type: none;
+    text-align: left;    
+}
+
+h2 {
+    font-size: 25px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -126,7 +130,7 @@ ul {
     }
 
     .profile-pic {
-        margin-bottom: 10px;
+        margin-bottom: -25px;
     }
 }
 
