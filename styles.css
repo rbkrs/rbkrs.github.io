@@ -134,10 +134,6 @@ h2 {
         text-align: center;
     }
 
-    .profile-pic {
-        margin-bottom: 10px;
-    }
-
     main {
         width: 100%;
         max-height: calc(100vh - 65px); /* Adjust based on other elements' heights */
@@ -146,10 +142,6 @@ h2 {
     .about-container {
         flex-direction: column;
         text-align: center;
-    }
-
-    .profile-pic {
-        margin-bottom: 5px;
     }
 }
 
