@@ -9,13 +9,13 @@ body {
     font-family: 'Roboto Mono', monospace;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5; 
-    color: rgb(34, 40, 49);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
 }
 
 a {
     text-decoration: none;
-    color: #27274b;
+    color: #000000;
 }
 
 a:hover {
@@ -25,11 +25,12 @@ a:hover {
 /* Navigation */
 
 nav {
-    background-color: #b5b5b5;
+    background-color: #fafafa;
     min-height: 120vh;
     width: 12.5%;
     float: left;
     text-align: center;
+    border-right: 1px solid #efefef;
 }
 
 .contact {
@@ -49,7 +50,7 @@ nav {
     margin: 0 auto; 
 }
 
-.small-contact { 
+.small-contact {
     display: none; 
 }
 
@@ -90,10 +91,26 @@ ul {
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 22px;
 }
 
-@media only screen and (max-width: 768px) {
+/* General styles */
+.nav-container {
+    width: 250px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 1280px) {
     nav {
         display: none;
     }
@@ -103,7 +120,8 @@ h2 {
         align-items: center;
         justify-content: center;
         font-size: 15px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #efefef;
+        background-color: #fafafa;
     }
 
     .small-contact span {
