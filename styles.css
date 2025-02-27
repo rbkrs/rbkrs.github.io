@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 /* Global Styles */
-html {
-    overflow-y: hidden;
-}
 
 body {
     font-family: 'Roboto Mono', monospace;
@@ -25,12 +22,20 @@ a:hover {
 /* Navigation */
 
 nav {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 250px;  
+    height: 100vh;  
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
     background-color: #fafafa;
-    min-height: 120vh;
-    width: 12.5%;
-    float: left;
-    text-align: center;
     border-right: 1px solid #efefef;
+}
+
+.user {
+    text-align: center;
 }
 
 .contact {
@@ -40,16 +45,6 @@ nav {
     margin: 0 auto;
 }
 
-.user {
-    padding: 1em 0 2.5em;
-}
-
-.container {
-    width: 100%;
-    max-width: 800px; 
-    margin: 0 auto; 
-}
-
 .small-contact {
     display: none; 
 }
@@ -57,22 +52,22 @@ nav {
 /* Main Content */
 
 main {
-    padding: 2.5% 1.5%;
     width: 70%;
-    margin: 0;
+    float: left;
     overflow-y: auto; 
     overflow-x: hidden; 
     box-sizing: border-box; 
 }
 
 .about-container {
+    float: right;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
     max-width: 900px;
     margin: auto;
-    padding-bottom: 40px;
+    padding: 40px;
 }
 
 .profile-pic {
