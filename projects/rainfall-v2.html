@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7559,7 +7560,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [337]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># General</span>
@@ -7580,6 +7581,7 @@ a.anchor-link {
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
 
 <span class="c1"># Feature Importance &amp; Explainability</span>
 <span class="kn">import</span> <span class="nn">shap</span>
@@ -7602,6 +7604,14 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>c:\Users\robkr\AppData\Local\Programs\Python\Python39\lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre>
+</div>
+</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
@@ -7627,7 +7637,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [338]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'train.csv'</span><span class="p">)</span>
@@ -7642,7 +7652,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [339]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -7656,7 +7666,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[339]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7784,7 +7794,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [340]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">shape</span>
@@ -7798,7 +7808,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[340]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(2190, 13)</pre>
 </div>
@@ -7810,7 +7820,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [341]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -7824,7 +7834,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[341]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>id               0
 day              0
@@ -7849,7 +7859,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [342]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Quick summary of dataset</span>
@@ -7886,7 +7896,7 @@ Data columns (total 13 columns):
  11  windspeed      2190 non-null   float64
  12  rainfall       2190 non-null   int64  
 dtypes: float64(10), int64(3)
-memory usage: 222.6 KB
+memory usage: 222.5 KB
 </pre>
 </div>
 </div>
@@ -7908,7 +7918,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [343]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">float_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">"float64"</span><span class="p">]</span>
@@ -7951,7 +7961,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [344]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">heatmap_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">"float64"</span><span class="p">,</span> <span class="s2">"int64"</span><span class="p">])</span>
@@ -8017,7 +8027,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [345]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="n">high_corr_pairs</span><span class="p">[</span><span class="s1">'Feature 1'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -8037,7 +8047,7 @@ memory usage: 222.6 KB
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>['mintemp', 'pressure', 'maxtemp', 'cloud', 'temparature', 'sunshine', 'dewpoint']
+<pre>['cloud', 'sunshine', 'maxtemp', 'pressure', 'mintemp', 'temparature', 'dewpoint']
 </pre>
 </div>
 </div>
@@ -8059,7 +8069,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [346]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'humidity_cloud_interaction'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">'humidity'</span><span class="p">]</span> <span class="o">*</span> <span class="n">train</span><span class="p">[</span><span class="s1">'cloud'</span><span class="p">]</span>
@@ -8085,7 +8095,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [347]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Test set contains an instance of null</span>
@@ -8100,7 +8110,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [348]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -8114,7 +8124,7 @@ memory usage: 222.6 KB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[348]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8283,7 +8293,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [349]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'rainfall'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">)</span>
@@ -8300,7 +8310,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [350]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
@@ -8308,7 +8318,7 @@ memory usage: 222.6 KB
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'id'</span><span class="p">:</span> <span class="n">test</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">'rainfall'</span><span class="p">:</span> <span class="n">predictions</span><span class="p">})</span>
-<span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'submission.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'submission_ridge.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Your submission was successfully saved!"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8335,7 +8345,7 @@ memory usage: 222.6 KB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%F0%9F%94%B9-8.-Keras!">🔹 8. Keras!<a class="anchor-link" href="#%F0%9F%94%B9-8.-Keras!">¶</a></h3>
+<h3 id="%F0%9F%94%B9-7.-Keras!">🔹 7. Keras!<a class="anchor-link" href="#%F0%9F%94%B9-7.-Keras!">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8344,7 +8354,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [351]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'day'</span><span class="p">,</span><span class="s1">'rainfall'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'ignore'</span><span class="p">)</span>
@@ -8361,7 +8371,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [352]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
@@ -8377,7 +8387,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [353]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span>
@@ -8392,7 +8402,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [354]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
@@ -8415,7 +8425,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [355]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
@@ -8430,7 +8440,7 @@ memory usage: 222.6 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [356]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> 
@@ -8448,127 +8458,93 @@ memory usage: 222.6 KB
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Epoch 1/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 5ms/step - accuracy: 0.7078 - loss: 0.6705 - val_accuracy: 0.8425 - val_loss: 0.3898
+55/55 [==============================] - 3s 8ms/step - loss: 0.5329 - accuracy: 0.7409 - val_loss: 0.3354 - val_accuracy: 0.8539
 Epoch 2/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8243 - loss: 0.4313 - val_accuracy: 0.8562 - val_loss: 0.3859
+55/55 [==============================] - 0s 6ms/step - loss: 0.4070 - accuracy: 0.8288 - val_loss: 0.3486 - val_accuracy: 0.8653
 Epoch 3/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8382 - loss: 0.3881 - val_accuracy: 0.8653 - val_loss: 0.3559
+55/55 [==============================] - 0s 5ms/step - loss: 0.3865 - accuracy: 0.8447 - val_loss: 0.3285 - val_accuracy: 0.8744
 Epoch 4/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8477 - loss: 0.3892 - val_accuracy: 0.8653 - val_loss: 0.3547
+55/55 [==============================] - 0s 5ms/step - loss: 0.3825 - accuracy: 0.8436 - val_loss: 0.3326 - val_accuracy: 0.8767
 Epoch 5/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8521 - loss: 0.3557 - val_accuracy: 0.8653 - val_loss: 0.3583
+55/55 [==============================] - 0s 5ms/step - loss: 0.3689 - accuracy: 0.8499 - val_loss: 0.3258 - val_accuracy: 0.8767
 Epoch 6/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8523 - loss: 0.3686 - val_accuracy: 0.8744 - val_loss: 0.3483
+55/55 [==============================] - 0s 5ms/step - loss: 0.3654 - accuracy: 0.8556 - val_loss: 0.3278 - val_accuracy: 0.8721
 Epoch 7/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8621 - loss: 0.3609 - val_accuracy: 0.8813 - val_loss: 0.3414
+55/55 [==============================] - 0s 4ms/step - loss: 0.3769 - accuracy: 0.8447 - val_loss: 0.3281 - val_accuracy: 0.8767
 Epoch 8/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8580 - loss: 0.3587 - val_accuracy: 0.8836 - val_loss: 0.3452
+55/55 [==============================] - 0s 4ms/step - loss: 0.3666 - accuracy: 0.8619 - val_loss: 0.3229 - val_accuracy: 0.8790
 Epoch 9/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8614 - loss: 0.3608 - val_accuracy: 0.8721 - val_loss: 0.3529
+55/55 [==============================] - 0s 4ms/step - loss: 0.3565 - accuracy: 0.8573 - val_loss: 0.3341 - val_accuracy: 0.8699
 Epoch 10/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8756 - loss: 0.3474 - val_accuracy: 0.8767 - val_loss: 0.3410
+55/55 [==============================] - 0s 4ms/step - loss: 0.3565 - accuracy: 0.8590 - val_loss: 0.3299 - val_accuracy: 0.8744
 Epoch 11/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8790 - loss: 0.3278 - val_accuracy: 0.8744 - val_loss: 0.3360
+55/55 [==============================] - 0s 4ms/step - loss: 0.3573 - accuracy: 0.8596 - val_loss: 0.3282 - val_accuracy: 0.8767
 Epoch 12/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8513 - loss: 0.3802 - val_accuracy: 0.8699 - val_loss: 0.3329
+55/55 [==============================] - 0s 4ms/step - loss: 0.3468 - accuracy: 0.8607 - val_loss: 0.3272 - val_accuracy: 0.8767
 Epoch 13/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8661 - loss: 0.3394 - val_accuracy: 0.8767 - val_loss: 0.3420
+55/55 [==============================] - 0s 4ms/step - loss: 0.3529 - accuracy: 0.8539 - val_loss: 0.3270 - val_accuracy: 0.8790
 Epoch 14/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8687 - loss: 0.3442 - val_accuracy: 0.8790 - val_loss: 0.3298
+55/55 [==============================] - 0s 5ms/step - loss: 0.3546 - accuracy: 0.8624 - val_loss: 0.3277 - val_accuracy: 0.8813
 Epoch 15/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8666 - loss: 0.3303 - val_accuracy: 0.8790 - val_loss: 0.3369
+55/55 [==============================] - 0s 4ms/step - loss: 0.3506 - accuracy: 0.8670 - val_loss: 0.3251 - val_accuracy: 0.8744
 Epoch 16/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8646 - loss: 0.3492 - val_accuracy: 0.8744 - val_loss: 0.3337
+55/55 [==============================] - 0s 4ms/step - loss: 0.3427 - accuracy: 0.8624 - val_loss: 0.3241 - val_accuracy: 0.8744
 Epoch 17/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8568 - loss: 0.3549 - val_accuracy: 0.8790 - val_loss: 0.3288
+55/55 [==============================] - 0s 4ms/step - loss: 0.3464 - accuracy: 0.8647 - val_loss: 0.3263 - val_accuracy: 0.8813
 Epoch 18/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8476 - loss: 0.3562 - val_accuracy: 0.8699 - val_loss: 0.3257
+55/55 [==============================] - 0s 4ms/step - loss: 0.3415 - accuracy: 0.8624 - val_loss: 0.3237 - val_accuracy: 0.8813
 Epoch 19/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8549 - loss: 0.3656 - val_accuracy: 0.8813 - val_loss: 0.3307
+55/55 [==============================] - 0s 4ms/step - loss: 0.3437 - accuracy: 0.8624 - val_loss: 0.3219 - val_accuracy: 0.8858
 Epoch 20/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8542 - loss: 0.3646 - val_accuracy: 0.8790 - val_loss: 0.3287
+55/55 [==============================] - 0s 4ms/step - loss: 0.3427 - accuracy: 0.8659 - val_loss: 0.3206 - val_accuracy: 0.8813
 Epoch 21/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8751 - loss: 0.3294 - val_accuracy: 0.8699 - val_loss: 0.3328
+55/55 [==============================] - 0s 4ms/step - loss: 0.3387 - accuracy: 0.8687 - val_loss: 0.3250 - val_accuracy: 0.8744
 Epoch 22/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8571 - loss: 0.3489 - val_accuracy: 0.8699 - val_loss: 0.3342
+55/55 [==============================] - 0s 4ms/step - loss: 0.3349 - accuracy: 0.8676 - val_loss: 0.3224 - val_accuracy: 0.8744
 Epoch 23/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8517 - loss: 0.3614 - val_accuracy: 0.8767 - val_loss: 0.3305
+55/55 [==============================] - 0s 5ms/step - loss: 0.3420 - accuracy: 0.8619 - val_loss: 0.3239 - val_accuracy: 0.8813
 Epoch 24/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8554 - loss: 0.3586 - val_accuracy: 0.8790 - val_loss: 0.3323
+55/55 [==============================] - 0s 5ms/step - loss: 0.3364 - accuracy: 0.8647 - val_loss: 0.3181 - val_accuracy: 0.8767
 Epoch 25/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8608 - loss: 0.3439 - val_accuracy: 0.8721 - val_loss: 0.3329
+55/55 [==============================] - 0s 5ms/step - loss: 0.3320 - accuracy: 0.8647 - val_loss: 0.3197 - val_accuracy: 0.8767
 Epoch 26/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8724 - loss: 0.3314 - val_accuracy: 0.8699 - val_loss: 0.3338
+55/55 [==============================] - 0s 4ms/step - loss: 0.3370 - accuracy: 0.8676 - val_loss: 0.3214 - val_accuracy: 0.8767
 Epoch 27/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8741 - loss: 0.3265 - val_accuracy: 0.8721 - val_loss: 0.3359
+55/55 [==============================] - 0s 5ms/step - loss: 0.3387 - accuracy: 0.8756 - val_loss: 0.3247 - val_accuracy: 0.8767
 Epoch 28/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8715 - loss: 0.3282 - val_accuracy: 0.8721 - val_loss: 0.3313
+55/55 [==============================] - 0s 5ms/step - loss: 0.3358 - accuracy: 0.8647 - val_loss: 0.3247 - val_accuracy: 0.8767
 Epoch 29/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8755 - loss: 0.3500 - val_accuracy: 0.8699 - val_loss: 0.3280
+55/55 [==============================] - 0s 5ms/step - loss: 0.3291 - accuracy: 0.8716 - val_loss: 0.3254 - val_accuracy: 0.8721
 Epoch 30/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8548 - loss: 0.3669 - val_accuracy: 0.8767 - val_loss: 0.3266
+55/55 [==============================] - 0s 5ms/step - loss: 0.3285 - accuracy: 0.8716 - val_loss: 0.3288 - val_accuracy: 0.8744
 Epoch 31/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8659 - loss: 0.3103 - val_accuracy: 0.8676 - val_loss: 0.3283
+55/55 [==============================] - 0s 5ms/step - loss: 0.3340 - accuracy: 0.8699 - val_loss: 0.3239 - val_accuracy: 0.8721
 Epoch 32/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8649 - loss: 0.3353 - val_accuracy: 0.8721 - val_loss: 0.3221
+55/55 [==============================] - 0s 5ms/step - loss: 0.3225 - accuracy: 0.8727 - val_loss: 0.3324 - val_accuracy: 0.8721
 Epoch 33/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8822 - loss: 0.3253 - val_accuracy: 0.8699 - val_loss: 0.3220
+55/55 [==============================] - 0s 4ms/step - loss: 0.3272 - accuracy: 0.8779 - val_loss: 0.3338 - val_accuracy: 0.8699
 Epoch 34/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8648 - loss: 0.3396 - val_accuracy: 0.8699 - val_loss: 0.3233
+55/55 [==============================] - 0s 5ms/step - loss: 0.3321 - accuracy: 0.8704 - val_loss: 0.3364 - val_accuracy: 0.8653
 Epoch 35/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8615 - loss: 0.3487 - val_accuracy: 0.8699 - val_loss: 0.3220
+55/55 [==============================] - 0s 4ms/step - loss: 0.3259 - accuracy: 0.8624 - val_loss: 0.3298 - val_accuracy: 0.8699
 Epoch 36/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8688 - loss: 0.3373 - val_accuracy: 0.8653 - val_loss: 0.3302
+55/55 [==============================] - 0s 5ms/step - loss: 0.3283 - accuracy: 0.8704 - val_loss: 0.3297 - val_accuracy: 0.8699
 Epoch 37/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8670 - loss: 0.3232 - val_accuracy: 0.8676 - val_loss: 0.3366
+55/55 [==============================] - 0s 4ms/step - loss: 0.3362 - accuracy: 0.8670 - val_loss: 0.3296 - val_accuracy: 0.8790
 Epoch 38/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8546 - loss: 0.3392 - val_accuracy: 0.8676 - val_loss: 0.3288
+55/55 [==============================] - 0s 5ms/step - loss: 0.3264 - accuracy: 0.8716 - val_loss: 0.3341 - val_accuracy: 0.8699
 Epoch 39/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8758 - loss: 0.3253 - val_accuracy: 0.8699 - val_loss: 0.3301
+55/55 [==============================] - 0s 5ms/step - loss: 0.3332 - accuracy: 0.8710 - val_loss: 0.3249 - val_accuracy: 0.8699
 Epoch 40/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8895 - loss: 0.2978 - val_accuracy: 0.8699 - val_loss: 0.3312
+55/55 [==============================] - 0s 4ms/step - loss: 0.3229 - accuracy: 0.8744 - val_loss: 0.3262 - val_accuracy: 0.8699
 Epoch 41/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8710 - loss: 0.3280 - val_accuracy: 0.8767 - val_loss: 0.3183
+55/55 [==============================] - 0s 5ms/step - loss: 0.3196 - accuracy: 0.8761 - val_loss: 0.3260 - val_accuracy: 0.8721
 Epoch 42/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8891 - loss: 0.3075 - val_accuracy: 0.8699 - val_loss: 0.3305
+55/55 [==============================] - 0s 5ms/step - loss: 0.3247 - accuracy: 0.8767 - val_loss: 0.3372 - val_accuracy: 0.8653
 Epoch 43/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8721 - loss: 0.3237 - val_accuracy: 0.8699 - val_loss: 0.3265
+55/55 [==============================] - 0s 5ms/step - loss: 0.3176 - accuracy: 0.8733 - val_loss: 0.3229 - val_accuracy: 0.8721
 Epoch 44/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8818 - loss: 0.3135 - val_accuracy: 0.8630 - val_loss: 0.3307
-Epoch 45/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8781 - loss: 0.3174 - val_accuracy: 0.8653 - val_loss: 0.3298
-Epoch 46/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8778 - loss: 0.3141 - val_accuracy: 0.8630 - val_loss: 0.3353
-Epoch 47/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8766 - loss: 0.3024 - val_accuracy: 0.8767 - val_loss: 0.3353
-Epoch 48/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8760 - loss: 0.3172 - val_accuracy: 0.8699 - val_loss: 0.3316
-Epoch 49/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8756 - loss: 0.3231 - val_accuracy: 0.8676 - val_loss: 0.3332
-Epoch 50/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8818 - loss: 0.3164 - val_accuracy: 0.8676 - val_loss: 0.3325
-Epoch 51/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8642 - loss: 0.3389 - val_accuracy: 0.8721 - val_loss: 0.3304
-Epoch 52/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8855 - loss: 0.2946 - val_accuracy: 0.8676 - val_loss: 0.3303
-Epoch 53/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8739 - loss: 0.3236 - val_accuracy: 0.8676 - val_loss: 0.3299
-Epoch 54/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8856 - loss: 0.3008 - val_accuracy: 0.8721 - val_loss: 0.3315
-Epoch 55/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8859 - loss: 0.2982 - val_accuracy: 0.8721 - val_loss: 0.3345
-Epoch 56/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8604 - loss: 0.3393 - val_accuracy: 0.8699 - val_loss: 0.3265
-Epoch 57/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8670 - loss: 0.3280 - val_accuracy: 0.8699 - val_loss: 0.3322
-Epoch 58/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8808 - loss: 0.2989 - val_accuracy: 0.8744 - val_loss: 0.3286
-Epoch 59/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step - accuracy: 0.8821 - loss: 0.3068 - val_accuracy: 0.8721 - val_loss: 0.3283
-Epoch 60/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8641 - loss: 0.3464 - val_accuracy: 0.8721 - val_loss: 0.3238
-Epoch 61/200
-<span class="ansi-bold">55/55</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 2ms/step - accuracy: 0.8862 - loss: 0.3061 - val_accuracy: 0.8676 - val_loss: 0.3293
+55/55 [==============================] - 0s 5ms/step - loss: 0.3180 - accuracy: 0.8733 - val_loss: 0.3247 - val_accuracy: 0.8699
 </pre>
 </div>
 </div>
@@ -8579,7 +8555,7 @@ Epoch 61/200
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [357]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">predictions_keras</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
@@ -8599,7 +8575,7 @@ Epoch 61/200
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-bold">23/23</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 3ms/step
+<pre>23/23 [==============================] - 0s 1ms/step
 Your submission was successfully saved!
 </pre>
 </div>
@@ -8611,7 +8587,7 @@ Your submission was successfully saved!
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [358]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">output</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -8625,7 +8601,7 @@ Your submission was successfully saved!
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[358]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8653,27 +8629,332 @@ Your submission was successfully saved!
 <tr>
 <th>0</th>
 <td>2190</td>
-<td>0.991187</td>
+<td>0.993476</td>
 </tr>
 <tr>
 <th>1</th>
 <td>2191</td>
-<td>0.996686</td>
+<td>0.996944</td>
 </tr>
 <tr>
 <th>2</th>
 <td>2192</td>
-<td>0.938134</td>
+<td>0.970677</td>
 </tr>
 <tr>
 <th>3</th>
 <td>2193</td>
-<td>0.237678</td>
+<td>0.228944</td>
 </tr>
 <tr>
 <th>4</th>
 <td>2194</td>
-<td>0.102559</td>
+<td>0.074985</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%F0%9F%94%B9-8.-XGBoost-Ensembling---found-online">🔹 8. XGBoost Ensembling - found online<a class="anchor-link" href="#%F0%9F%94%B9-8.-XGBoost-Ensembling---found-online">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">RMV</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'rainfall'</span><span class="p">,</span><span class="s1">'id'</span><span class="p">]</span>
+<span class="n">FEATURES</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">RMV</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBRegressor</span><span class="p">,</span> <span class="n">XGBClassifier</span>
+<span class="kn">import</span> <span class="nn">xgboost</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Using XGBoost version"</span><span class="p">,</span><span class="n">xgboost</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Using XGBoost version 2.1.4
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">FOLDS</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">FOLDS</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">777</span><span class="p">)</span>
+    
+<span class="n">oof_knn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">))</span>
+<span class="n">pred_knn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">train</span><span class="p">)):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"#"</span><span class="o">*</span><span class="mi">25</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"### Fold </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"#"</span><span class="o">*</span><span class="mi">25</span><span class="p">)</span>
+    
+    <span class="n">x_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="n">FEATURES</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span><span class="s2">"rainfall"</span><span class="p">]</span>    
+    <span class="n">x_valid</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="n">FEATURES</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span><span class="s2">"rainfall"</span><span class="p">]</span>
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">FEATURES</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">FEATURES</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+        <span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="n">s</span>
+        <span class="n">x_valid</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_valid</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="n">s</span>
+        <span class="n">x_test</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="n">s</span>
+        <span class="n">x_test</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="c1"># INFER OOF</span>
+    <span class="n">oof_knn</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_valid</span><span class="o">.</span><span class="n">values</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># INFER TEST</span>
+    <span class="n">pred_knn</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">values</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># COMPUTE AVERAGE TEST PREDS</span>
+<span class="n">pred_knn</span> <span class="o">/=</span> <span class="n">FOLDS</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>#########################
+### Fold 1
+#########################
+#########################
+### Fold 2
+#########################
+#########################
+### Fold 3
+#########################
+#########################
+### Fold 4
+#########################
+#########################
+### Fold 5
+#########################
+CPU times: total: 2.03 s
+Wall time: 572 ms
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">best_public</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"best_public.csv"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">best_public</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">best_public</span> <span class="o">=</span> <span class="n">best_public</span><span class="o">.</span><span class="n">rainfall</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>id</th>
+<th>rainfall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>2190</td>
+<td>0.960959</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2191</td>
+<td>0.946575</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2192</td>
+<td>0.994521</td>
+</tr>
+<tr>
+<th>3</th>
+<td>2193</td>
+<td>0.089041</td>
+</tr>
+<tr>
+<th>4</th>
+<td>2194</td>
+<td>0.020548</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">rankdata</span>
+
+<span class="n">sub</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"sample_submission.csv"</span><span class="p">)</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">rainfall</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.067</span> <span class="o">*</span> <span class="n">rankdata</span><span class="p">(</span><span class="n">pred_knn</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.067</span> <span class="o">*</span> <span class="n">rankdata</span><span class="p">(</span><span class="n">best_public</span><span class="p">)</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">rainfall</span> <span class="o">=</span> <span class="n">rankdata</span><span class="p">(</span> <span class="n">sub</span><span class="o">.</span><span class="n">rainfall</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sub</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">"submission_knn.csv"</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sub</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>(730, 2)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>id</th>
+<th>rainfall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>2190</td>
+<td>0.962329</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2191</td>
+<td>0.943151</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2192</td>
+<td>0.993151</td>
+</tr>
+<tr>
+<th>3</th>
+<td>2193</td>
+<td>0.097260</td>
+</tr>
+<tr>
+<th>4</th>
+<td>2194</td>
+<td>0.020548</td>
 </tr>
 </tbody>
 </table>
