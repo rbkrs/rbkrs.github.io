@@ -3,115 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>robkras.com</title>
-    <link href="styles.css" type="text/css" rel="stylesheet">
+    <title>Robin Kras</title>
+    <link rel="stylesheet" href="styles.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134429162-1"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const scroll = new SmoothScroll('a[href*="#"]');
-        });
-    </script>
 </head>
-
 <body>
-    <nav>
-        <div class="user">R.P.M. Kras</div>
-        <section class="contact">
-            <i class='bx bxl-linkedin'></i> <a href="https://www.linkedin.com/in/robin-r-p-m-kras-8b4bb31bb/" target="_blank">LinkedIn</a><br>
-            <i class='bx bx-envelope'></i> <a href="mailto:robkraseu@gmail.com">Email</a><br>
-            <i class='bx bxl-github'></i> <a href="https://github.com/rbkrs" target="_blank">GitHub</a><br>
-            <i class='bx bx-file'></i> <a href="RPM_Kras-resume.pdf" download>Resume</a><br>
-            <i class='bx bx-code-block'></i> <a href="https://www.kaggle.com/robkraseu">Kaggle</a>
-        </section>
-    </nav>
-
-    <section class="small-contact"> 
-        <span id="name"><div>R.P.M. Kras</div></span>
-        <span> <a href="mailto:robkraseu@gmail.com">                                        <i class='bx bx-envelope'>  </i>    </a> <br></span>
-        <span> <a href="https://www.linkedin.com/in/robin-r-p-m-kras-8b4bb31bb/" target="_blank"> <i class='bx bxl-linkedin'> </i>    </a> <br></span>
-        <span> <a href="https://github.com/rbkrs" target="_blank">                          <i class='bx bxl-github'>   </i>    </a> <br></span>
-        <span> <a href="RPM_Kras-resume.pdf" download>                                      <i class='bx bx-file'>      </i>    </a>  <br></span>
-        <span> <a href="https://www.kaggle.com/robkraseu">                                  <i class='bx bx-code-block'></i>    </a>     </span>
-    </section>
-
-    <main class="main">
-        <section class="about-container">
-            <img src="face.png" alt="Robin R.P.M. Kras" class="profile-pic">
-            <div class="about-content">
-                <h2>Hello there 👋</h2>
-                <p>My name is Robin. I am a fan of algorithms, mathematics, and programming.</p>
-        
-                <h2>Skills</h2>
-                <ul>
-                    <li><strong>Programming:</strong> Python, JavaScript, Assembly, C, C++, Scala</li>
-                    <li><strong>Technical Skills:</strong> Keras, NumPy, Pandas, TensorFlow, SQL/MySQL,  
-                        data manipulation, data visualization, machine learning, web scraping, data mining, natural language processing, huggingface transformers</li>
-                    <li><strong>Personal Skills:</strong> love of learning, time management, communication, leadership, management, excellent swimmer</li>
-                </ul>
-
-                <h2>Education</h2>
-                <ul>
-                    <li>MSc in Computer Science, Rijksuniversiteit Leiden</li>
-                    <ul>
-                        <li>Specialization in Data Science and AI</li>
-                    </ul>
-                    <li>BSc in Computer Science, Vrije Universiteit Amsterdam</li>
-                    <ul>
-                        <li>Minor in Data Science</li>
-                    </ul>
-                </ul>
-        
-                <h2>Certificates</h2>
-                <ul>
-                    <li>C1 Advanced, issued by Cambridge Assessment International Education</li>
-                </ul>
-
-                <h2>Languages</h2>
-                <ul>
-                    <li>Dutch: Native profiency</li>
-                    <li>English: Bilingual proficiency</li>
-                    <li>Deutsch: Limited working proficiency</li>
-                    <li>French: Limited working proficiency</li>
-                </ul>
-
-                <h2>Projects</h2>
-                <p>In my free time I enjoy participating in <a href="https://www.kaggle.com/robkraseu">Kaggle</a> competitions!</p>
-                <ul>
-                    <li>Titanic Spaceship</li>
-                    <ul>
-                        <li><a href="projects/titanic-spaceship.html" target="_blank">Titanic (spaceship ver.) Survival (#1): 0.76011</a></li>
-                        <li><a href="projects/titanic-spaceship-v2.html" target="_blank">Titanic (spaceship ver.) Survival (#2): 0.79565</a></li>
-                    </ul>
-                    <li>Titanic</li>
-                    <ul>
-                        <li><a href="projects/titanic.html" target="_blank">Titanic Survival (#1): 0.76315</a></li>
-                        <li><a href="projects/titanic-v2.html" target="_blank">Titanic Survival (#2): 0.78468</a></li>
-                    </ul>
-                    <li>House Prices</li>
-                    <ul>
-                        <li><a href="projects/house-prices.html" target="_blank">House Prices (#1): 0.14138</a></li>
-                        <li><a href="projects/house-prices-v2.html" target="_blank">House Prices (#2): 0.13616</a></li>
-                    </ul>
-                    <li>Rainfall</li>
-                    <ul>
-                        <li><a href="projects/rainfall.html" target="_blank">Rainfall (#1): 0.74542</a></li>
-                        <li><a href="projects/rainfall-v2.html" target="_blank">Rainfall (#2): 0.87235</a></li>
-                    </ul>
-                    <li><a href="projects/backpack.html" target="_blank">Backpack (#1): 39.12022</a>
-                </ul>
-                <p>I value a structured approach to each problem I handle. For those ends, I created a small guide:</p>
-                <ul>
-                    <li><a href="projects/MLWorkflow.pdf" target="_blank">ML Workflow Guide</a></li>
-                </ul>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <img src="face.png" alt="Robin R.P.M. Kras" class="profile-pic">
+                <h1>Robin R.P.M. Kras</h1>
+                <p class="tagline">Computer Science | Data Science | AI</p>
             </div>
-        </section>           
             
+            <nav class="social-links">
+                <a href="https://www.linkedin.com/in/robin-r-p-m-kras-8b4bb31bb/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                <a href="mailto:robkraseu@gmail.com"><i class='bx bx-envelope'></i></a>
+                <a href="https://github.com/rbkrs" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="RPM_Kras-resume.pdf" download><i class='bx bx-file'></i></a>
+                <a href="https://www.kaggle.com/robkraseu" target="_blank"><i class='bx bx-code-block'></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>Hello there 👋 <br> My name is Robin. I am a fan of algorithms, mathematics, and programming.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <p>Python, C, C++, Scala, Assembly</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Technical</h3>
+                        <p>Keras, NumPy, Pandas, TensorFlow, SQL/MySQL, data manipulation, data visualization, machine learning, web scraping, data mining, NLP, HuggingFace transformers</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Personal</h3>
+                        <p>Love of learning, time management, communication, leadership, management, excellent swimmer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>MSc in Computer Science</h3>
+                    <p>Rijksuniversiteit Leiden (2024-2025)</p>
+                    <p>Specialization in Data Science and AI</p>
+                    <p style="font-style: italic; font-size: 8px;">Expected finalisation June 2025</p>
+                </div>
+                <div class="education-item">
+                    <h3>BSc in Computer Science</h3>
+                    <p>Vrije Universiteit Amsterdam (2020-2023)</p>
+                    <p>Minor in Data Science</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="section">
+            <div class="container">
+                <h2>Languages</h2>
+                <div class="language-grid">
+                    <div class="language-item">
+                        <span class="language-name">Dutch</span>
+                        <span class="language-level">Native proficiency</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level">Bilingual proficiency (C1 Advanced)</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">Deutsch</span>
+                        <span class="language-level">Limited working proficiency</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">French</span>
+                        <span class="language-level">Limited working proficiency</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Projects</h2>
+                <p>In my free time I enjoy participating in <a href="https://www.kaggle.com/robkraseu" target="_blank">Kaggle</a> competitions!</p>
+                
+                <div class="project-grid">
+                    <div class="project-category">
+                        <h3>Titanic Spaceship</h3>
+                        <ul>
+                            <li><a href="projects/titanic-spaceship.html" target="_blank">Version 1: 0.76011</a></li>
+                            <li><a href="projects/titanic-spaceship-v2.html" target="_blank">Version 2: 0.79565</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-category">
+                        <h3>Titanic</h3>
+                        <ul>
+                            <li><a href="projects/titanic.html" target="_blank">Version 1: 0.76315</a></li>
+                            <li><a href="projects/titanic-v2.html" target="_blank">Version 2: 0.78468</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-category">
+                        <h3>House Prices</h3>
+                        <ul>
+                            <li><a href="projects/house-prices.html" target="_blank">Version 1: 0.14138</a></li>
+                            <li><a href="projects/house-prices-v2.html" target="_blank">Version 2: 0.13616</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-category">
+                        <h3>Rainfall</h3>
+                        <ul>
+                            <li><a href="projects/rainfall.html" target="_blank">Version 1: 0.74542</a></li>
+                            <li><a href="projects/rainfall-v2.html" target="_blank">Version 2: 0.95548</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-category">
+                        <h3>Backpack</h3>
+                        <ul>
+                            <li><a href="projects/backpack.html" target="_blank">Backpack: 39.12022</a></li>
+                        </ul>
+                    </div>
+                    <div class="project-category">
+                        <h3>Guide</h3>
+                        <ul>
+                            <li><a href="projects/MLWorkflow.pdf" target="_blank">ML Workflow Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 R.P.M. Kras</p>
+        </div>
+    </footer>
 </body>
-
 </html>
