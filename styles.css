@@ -227,6 +227,18 @@ h3 {
   border-left: 3px solid var(--accent-color);
 }
 
+.project-category table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 15px 5px;  /* The first value (15px) controls horizontal spacing */
+}
+
+.project-category th, 
+.project-category td {
+  text-align: left;
+  padding: 3px 10px;
+}
+
 .score-change {
   color: #28a745;
   font-weight: bold;
