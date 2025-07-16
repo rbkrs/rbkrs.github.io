@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Analyzer - GitHub Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .upload-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background: #f8f9ff;
+            border-color: #5a67d8;
+        }
+
+        .upload-area.dragover {
+            background: #f0f4ff;
+            border-color: #4c51bf;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .summary-card p {
+            opacity: 0.9;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .model-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .model-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .model-info {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .model-info strong {
+            color: #667eea;
+        }
+
+        .hyperparams {
+            background: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .hyperparams h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .param-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #cbd5e0;
+        }
+
+        .param-item:last-child {
+            border-bottom: none;
+        }
+
+        .code-preview {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .recommendations {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .warnings {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .list-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .loading .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Model Analyzer</h1>
+            <p>Analyze machine learning models in Jupyter notebooks</p>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">Drop your Jupyter notebook (.ipynb) or HTML file here</div>
+                <div class="upload-text">or</div>
+                <button class="btn" onclick="document.getElementById('fileInput').click()">
+                    Choose File
+                </button>
+                <input type="file" id="fileInput" class="file-input" accept=".ipynb,.html" />
+            </div>
+        </div>
+
+        <div id="loadingSection" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing your notebook...</p>
+        </div>
+
+        <div id="errorSection" class="error" style="display: none;"></div>
+
+        <div id="resultsSection" class="results-section">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3 id="modelCount">0</h3>
+                    <p>Models Found</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="datasetCount">0</h3>
+                    <p>Datasets</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="trainingCellCount">0</h3>
+                    <p>Training Cells</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="evalCellCount">0</h3>
+                    <p>Evaluation Cells</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('models')">Models</button>
+                <button class="tab" onclick="showTab('datasets')">Datasets</button>
+                <button class="tab" onclick="showTab('recommendations')">Recommendations</button>
+                <button class="tab" onclick="showTab('warnings')">Warnings</button>
+            </div>
+
+            <div id="modelsTab" class="tab-content active">
+                <div class="section">
+                    <h2>Detected Models</h2>
+                    <div id="modelsList"></div>
+                </div>
+            </div>
+
+            <div id="datasetsTab" class="tab-content">
+                <div class="section">
+                    <h2>Datasets</h2>
+                    <div id="datasetsList"></div>
+                </div>
+            </div>
+
+            <div id="recommendationsTab" class="tab-content">
+                <div class="section">
+                    <h2>Recommendations</h2>
+                    <div id="recommendationsList" class="recommendations"></div>
+                </div>
+            </div>
+
+            <div id="warningsTab" class="tab-content">
+                <div class="section">
+                    <h2>Warnings</h2>
+                    <div id="warningsList" class="warnings"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Model analyzer functionality (client-side simulation)
+        class ModelAnalyzer {
+            constructor() {
+                this.modelPatterns = {
+                    'sklearn': [
+                        /LinearRegression\s*\(/gi,
+                        /LogisticRegression\s*\(/gi,
+                        /RandomForestRegressor\s*\(/gi,
+                        /RandomForestClassifier\s*\(/gi,
+                        /SVC\s*\(/gi,
+                        /SVR\s*\(/gi,
+                        /GradientBoostingRegressor\s*\(/gi,
+                        /GradientBoostingClassifier\s*\(/gi,
+                        /DecisionTreeRegressor\s*\(/gi,
+                        /DecisionTreeClassifier\s*\(/gi,
+                        /KNeighborsRegressor\s*\(/gi,
+                        /KNeighborsClassifier\s*\(/gi,
+                        /MLPRegressor\s*\(/gi,
+                        /MLPClassifier\s*\(/gi,
+                    ],
+                    'xgboost': [
+                        /XGBRegressor\s*\(/gi,
+                        /XGBClassifier\s*\(/gi,
+                        /xgb\.train\s*\(/gi,
+                    ],
+                    'lightgbm': [
+                        /LGBMRegressor\s*\(/gi,
+                        /LGBMClassifier\s*\(/gi,
+                        /lgb\.train\s*\(/gi,
+                    ],
+                    'tensorflow': [
+                        /tf\.keras\.models\.Sequential\s*\(/gi,
+                        /keras\.models\.Sequential\s*\(/gi,
+                        /tf\.keras\.Model\s*\(/gi,
+                        /Model\s*\(/gi,
+                    ],
+                    'pytorch': [
+                        /torch\.nn\.Module/gi,
+                        /nn\.Module/gi,
+                        /torch\.nn\.Linear\s*\(/gi,
+                        /nn\.Linear\s*\(/gi,
+                    ]
+                };
+                
+                this.trainingPatterns = [
+                    /\.fit\s*\(/gi,
+                    /\.train\s*\(/gi,
+                    /model\.compile\s*\(/gi,
+                    /\.fit_generator\s*\(/gi,
+                ];
+                
+                this.evaluationPatterns = [
+                    /\.predict\s*\(/gi,
+                    /\.score\s*\(/gi,
+                    /\.evaluate\s*\(/gi,
+                    /\.predict_proba\s*\(/gi,
+                    /cross_val_score\s*\(/gi,
+                    /train_test_split\s*\(/gi,
+                    /accuracy_score\s*\(/gi,
+                    /mean_squared_error\s*\(/gi,
+                    /classification_report\s*\(/gi,
+                    /confusion_matrix\s*\(/gi,
+                ];
+                
+                this.datasetPatterns = [
+                    /pd\.read_csv\s*\(/gi,
+                    /pd\.read_excel\s*\(/gi,
+                    /load_iris\s*\(/gi,
+                    /load_boston\s*\(/gi,
+                    /load_diabetes\s*\(/gi,
+                    /load_wine\s*\(/gi,
+                    /load_breast_cancer\s*\(/gi,
+                    /make_classification\s*\(/gi,
+                    /make_regression\s*\(/gi,
+                ];
+            }
+
+            async analyzeNotebook(content, isHTML = false) {
+                const cells = isHTML ? this.parseHTML(content) : this.parseNotebook(content);
+                
+                const models = [];
+                const datasets = [];
+                const trainingCells = [];
+                const evaluationCells = [];
+                
+                cells.forEach((cell, index) => {
+                    if (this.containsTrainingCode(cell)) {
+                        trainingCells.push(index);
+                    }
+                    
+                    if (this.containsEvaluationCode(cell)) {
+                        evaluationCells.push(index);
+                    }
+                    
+                    const cellModels = this.extractModels(cell, index);
+                    models.push(...cellModels);
+                    
+                    const cellDatasets = this.extractDatasets(cell, index);
+                    datasets.push(...cellDatasets);
+                });
+                
+                const recommendations = this.generateRecommendations(models, datasets);
+                const warnings = this.generateWarnings(models, datasets);
+                
+                return {
+                    models,
+                    datasets,
+                    trainingCells,
+                    evaluationCells,
+                    recommendations,
+                    warnings
+                };
+            }
+
+            parseNotebook(content) {
+                try {
+                    const notebook = JSON.parse(content);
+                    return notebook.cells
+                        .filter(cell => cell.cell_type === 'code')
+                        .map(cell => Array.isArray(cell.source) ? cell.source.join('') : cell.source);
+                } catch (e) {
+                    throw new Error('Invalid notebook format');
+                }
+            }
+
+            parseHTML(content) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(content, 'text/html');
+                const codeCells = doc.querySelectorAll('.highlight, .codehilite, pre code');
+                return Array.from(codeCells).map(cell => cell.textContent);
+            }
+
+            containsTrainingCode(source) {
+                return this.trainingPatterns.some(pattern => pattern.test(source));
+            }
+
+            containsEvaluationCode(source) {
+                return this.evaluationPatterns.some(pattern => pattern.test(source));
+            }
+
+            extractModels(source, cellIndex) {
+                const models = [];
+                
+                Object.entries(this.modelPatterns).forEach(([framework, patterns]) => {
+                    patterns.forEach(pattern => {
+                        let match;
+                        while ((match = pattern.exec(source)) !== null) {
+                            const modelType = match[0].replace(/\s*\(.*/, '');
+                            const hyperparams = this.extractHyperparameters(source, match.index);
+                            
+                            models.push({
+                                type: modelType,
+                                framework,
+                                hyperparameters: hyperparams,
+                                cellIndex,
+                                sourceCode: source.substring(Math.max(0, match.index - 50), match.index + 100)
+                            });
+                        }
+                    });
+                });
+                
+                return models;
+            }
+
+            extractDatasets(source, cellIndex) {
+                const datasets = [];
+                
+                this.datasetPatterns.forEach(pattern => {
+                    let match;
+                    while ((match = pattern.exec(source)) !== null) {
+                        const datasetName = this.extractDatasetName(source, match.index);
+                        datasets.push({
+                            name: datasetName,
+                            cellIndex,
+                            pattern: match[0]
+                        });
+                    }
+                });
+                
+                return datasets;
+            }
+
+            extractHyperparameters(source, startPos) {
+                const parenStart = source.indexOf('(', startPos);
+                if (parenStart === -1) return {};
+                
+                let parenCount = 1;
+                let parenEnd = parenStart + 1;
+                
+                while (parenEnd < source.length && parenCount > 0) {
+                    if (source[parenEnd] === '(') parenCount++;
+                    else if (source[parenEnd] === ')') parenCount--;
+                    parenEnd++;
+                }
+                
+                if (parenCount === 0) {
+                    const paramsText = source.substring(parenStart + 1, parenEnd - 1);
+                    return this.parseParameters(paramsText);
+                }
+                
+                return {};
+            }
+
+            parseParameters(paramsText) {
+                const params = {};
+                const paramMatches = paramsText.match(/(\w+)\s*=\s*([^,]+)/g);
+                
+                if (paramMatches) {
+                    paramMatches.forEach(match => {
+                        const [, key, value] = match.match(/(\w+)\s*=\s*(.+)/);
+                        params[key] = value.trim();
+                    });
+                }
+                
+                return params;
+            }
+
+            extractDatasetName(source, startPos) {
+                const lines = source.substring(0, startPos).split('\n');
+                const currentLine = lines[lines.length - 1];
+                const assignmentMatch = currentLine.match(/(\w+)\s*=/);
+                
+                return assignmentMatch ? assignmentMatch[1] : `dataset_${startPos}`;
+            }
+
+            generateRecommendations(models, datasets) {
+                const recommendations = [];
+                
+                if (models.length === 0) {
+                    recommendations.push('No models detected. Consider adding model training code.');
+                    return recommendations;
+                }
+                
+                const modelTypes = new Set(models.map(m => m.type));
+                if (modelTypes.size === 1) {
+                    recommendations.push('Consider trying multiple model types for comparison.');
+                }
+                
+                const tunedModels = models.filter(m => Object.keys(m.hyperparameters).length > 0);
+                if (tunedModels.length < models.length) {
+                    recommendations.push('Consider hyperparameter tuning for better performance.');
+                }
+                
+                recommendations.push('Implement cross-validation for robust model evaluation.');
+                
+                if (datasets.length > 0) {
+                    recommendations.push('Consider feature engineering and data preprocessing.');
+                }
+                
+                return recommendations;
+            }
+
+            generateWarnings(models, datasets) {
+                const warnings = [];
+                
+                const problematicModels = ['DecisionTreeRegressor', 'DecisionTreeClassifier'];
+                models.forEach(model => {
+                    if (problematicModels.some(pm => model.type.includes(pm))) {
+                        if (!model.hyperparameters.max_depth) {
+                            warnings.push(`Decision tree without max_depth may overfit (Cell ${model.cellIndex})`);
+                        }
+                    }
+                });
+                
+                const hasValidation = models.some(m => m.sourceCode.includes('cross_val'));
+                if (models.length > 0 && !hasValidation) {
+                    warnings.push('No cross-validation detected. Model may not generalize well.');
+                }
+                
+                return warnings;
+            }
+        }
+
+        // UI functionality
+        const analyzer = new ModelAnalyzer();
+        
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        async function handleFile(file) {
+            const loadingSection = document.getElementById('loadingSection');
+            const errorSection = document.getElementById('errorSection');
+            const resultsSection = document.getElementById('resultsSection');
+            
+            loadingSection.style.display = 'block';
+            errorSection.style.display = 'none';
+            resultsSection.classList.remove('show');
+            
+            try {
+                const content = await file.text();
+                const isHTML = file.name.endsWith('.html');
+                
+                const results = await analyzer.analyzeNotebook(content, isHTML);
+                displayResults(results);
+                
+                loadingSection.style.display = 'none';
+                resultsSection.classList.add('show');
+                
+            } catch (error) {
+                loadingSection.style.display = 'none';
+                errorSection.style.display = 'block';
+                errorSection.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        function displayResults(results) {
+            // Update summary cards
+            document.getElementById('modelCount').textContent = results.models.length;
+            document.getElementById('datasetCount').textContent = results.datasets.length;
+            document.getElementById('trainingCellCount').textContent = results.trainingCells.length;
+            document.getElementById('evalCellCount').textContent = results.evaluationCells.length;
+            
+            // Display models
+            const modelsList = document.getElementById('modelsList');
+            modelsList.innerHTML = '';
+            
+            if (results.models.length === 0) {
+                modelsList.innerHTML = '<p>No models detected</p>';
+            } else {
+                results.models.forEach(model => {
+                    const modelCard = document.createElement('div');
+                    modelCard.className = 'model-card';
+                    
+                    const hyperparamsHtml = Object.keys(model.hyperparameters).length > 0 ? `
+                        <div class="hyperparams">
+                            <h4>Hyperparameters:</h4>
+                            ${Object.entries(model.hyperparameters).map(([key, value]) => 
+                                `<div class="param-item"><span>${key}:</span><span>${value}</span></div>`
+                            ).join('')}
+                        </div>
+                    ` : '';
+                    
+                    modelCard.innerHTML = `
+                        <h3>${model.type}</h3>
+                        <div class="model-info">
+                            <strong>Framework:</strong> <span>${model.framework}</span>
+                            <strong>Cell:</strong> <span>${model.cellIndex}</span>
+                        </div>
+                        ${hyperparamsHtml}
+                        <div class="code-preview">${model.sourceCode}</div>
+                    `;
+                    
+                    modelsList.appendChild(modelCard);
+                });
+            }
+            
+            // Display datasets
+            const datasetsList = document.getElementById('datasetsList');
+            datasetsList.innerHTML = '';
+            
+            if (results.datasets.length === 0) {
+                datasetsList.innerHTML = '<p>No datasets detected</p>';
+            } else {
+                results.datasets.forEach(dataset => {
+                    const datasetCard = document.createElement('div');
+                    datasetCard.className = 'model-card';
+                    datasetCard.innerHTML = `
+                        <h3>${dataset.name}</h3>
+                        <div class="model-info">
+                            <strong>Cell:</strong> <span>${dataset.cellIndex}</span>
+                            <strong>Pattern:</strong> <span>${dataset.pattern}</span>
+                        </div>
+                    `;
+                    datasetsList.appendChild(datasetCard);
+                });
+            }
+            
+            // Display recommendations
+            const recommendationsList = document.getElementById('recommendationsList');
+            recommendationsList.innerHTML = results.recommendations.map(rec => 
+                `<div class="list-item">💡 ${rec}</div>`
+            ).join('');
+            
+            // Display warnings
+            const warningsList = document.getElementById('warningsList');
+            warningsList.innerHTML = results.warnings.map(warning => 
+                `<div class="list-item">⚠️ ${warning}</div>`
+            ).join('');
+        }
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Show selected tab
+            document.querySelector(`#${tabName}Tab`).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
