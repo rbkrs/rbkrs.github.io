@@ -43,6 +43,10 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   width: 100%;
   max-width: var(--container-width);
@@ -425,6 +429,153 @@ h3 {
     border-bottom: none;
 }
 
+/* Tools Section */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.tool-card {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.tool-card h3 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.tool-description {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.tool-features {
+  margin-bottom: 25px;
+}
+
+.tool-features h4 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.tool-features ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.tool-features li {
+  color: var(--secondary-color);
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.tool-features li:before {
+  content: "▸";
+  color: var(--accent-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.tool-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--border-radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tool-link.primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.tool-link.primary:hover {
+  background-color: #005aa3;
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.tool-link.secondary {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+}
+
+.tool-link.secondary:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.dark-mode .tool-link.primary:hover {
+  background-color: #4d9fec;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 90px; /* Position above dark mode toggle */
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
 /* Toggle button styles */
 #dark-mode-toggle {
   position: fixed;
@@ -474,7 +625,8 @@ footer {
 @media (max-width: 768px) {
   .skills-grid,
   .project-grid,
-  .language-grid {
+  .language-grid,
+  .tools-grid {
     grid-template-columns: 1fr; /* Stacks cards on smaller screens */
     gap: 20px; /* Adjusted gap for single column */
   }
@@ -510,6 +662,18 @@ footer {
   .project-category th, .project-category td {
       padding: 6px 8px;
   }
+  
+  .tools-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .tool-card {
+      padding: 20px;
+  }
+  
+  .tool-links {
+      justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -541,5 +705,11 @@ footer {
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
+    }
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        bottom: 80px;
     }
 }
