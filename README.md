@@ -1,4 +1,4 @@
-# Robin Kras - Data Science & AI Portfolio
+# Rob Kras
 
 A personal portfolio website showcasing data science and machine learning projects, Kaggle competition achievements, and technical skills.
 
