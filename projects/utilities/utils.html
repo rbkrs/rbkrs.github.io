@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Functions - Rob Kras</title>
+    <meta name="description" content="Library of optimized utility functions for machine learning preprocessing, visualization, and evaluation that I reuse across projects.">
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../script.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <h1>Common Functions Library</h1>
+                <p class="tagline">Reusable utility functions for machine learning projects</p>
+            </div>
+            
+            <nav class="social-links">
+                <a href="../../index.html" aria-label="Back to portfolio"><i class='bx bx-home'></i></a>
+                <a href="https://www.linkedin.com/in/robin-r-p-m-kras-8b4bb31bb/" target="_blank" aria-label="LinkedIn profile"><i class='bx bxl-linkedin'></i></a>
+                <a href="mailto:robkraseu@gmail.com" aria-label="Email contact"><i class='bx bx-envelope'></i></a>
+                <a href="https://github.com/rbkrs" target="_blank" aria-label="GitHub profile"><i class='bx bxl-github'></i></a>
+                <a href="https://www.kaggle.com/robkraseu" target="_blank" aria-label="Kaggle profile"><i class='bx bx-code-block'></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="utils-intro">
+                    <h2><i class='bx bx-code-curly'></i> About This Library</h2>
+                    <p>This is a collection of optimized utility functions that I've developed and refined through my machine learning projects. These functions handle common tasks in data preprocessing, visualization, and model evaluation, allowing me to maintain consistency and efficiency across different projects.</p>
+                </div>
+
+                <div class="utils-grid">
+                    <div class="utils-category">
+                        <div class="utils-header">
+                            <i class='bx bx-stats'></i>
+                            <h3>Model Ensemble & Evaluation</h3>
+                        </div>
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-layer'></i>
+                                    <h4>generate_stack()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Stacking ensemble function for combining multiple models with cross-validation. 
+                                    Implements meta-learning to optimize the combination of base models for improved performance.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Cross-validation</span>
+                                    <span class="feature-tag">Meta-learning</span>
+                                    <span class="feature-tag">Model combining</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-target-lock'></i>
+                                    <h4>plot_model_performance()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Comprehensive model performance evaluation with multiple metrics visualization. 
+                                    Generates detailed performance reports including accuracy, precision, recall, and F1-score.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Performance metrics</span>
+                                    <span class="feature-tag">Visualization</span>
+                                    <span class="feature-tag">Comprehensive reporting</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-refresh'></i>
+                                    <h4>oof_cross_val()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Out-of-fold cross-validation function with averaged predictions. 
+                                    Provides robust model validation while generating predictions for the entire training set.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Cross-validation</span>
+                                    <span class="feature-tag">Out-of-fold</span>
+                                    <span class="feature-tag">Averaged predictions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="utils-category">
+                        <div class="utils-header">
+                            <i class='bx bx-bar-chart-alt-2'></i>
+                            <h3>Data Visualization</h3>
+                        </div>
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-stats'></i>
+                                    <h4>plot_nums()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Visualization function for numerical data distributions with histograms and KDE. 
+                                    Creates publication-ready plots for understanding data distributions and patterns.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Histograms</span>
+                                    <span class="feature-tag">KDE plots</span>
+                                    <span class="feature-tag">Distribution analysis</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-pie-chart-alt'></i>
+                                    <h4>plot_cats()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Visualization function for categorical data using pie charts and bar plots. 
+                                    Handles categorical variable analysis with automatic styling and labeling.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Pie charts</span>
+                                    <span class="feature-tag">Bar plots</span>
+                                    <span class="feature-tag">Categorical analysis</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <h4>heatmap_nums()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Correlation heatmap generation with high correlation pair detection. 
+                                    Identifies and highlights strong correlations in datasets for feature selection.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Correlation analysis</span>
+                                    <span class="feature-tag">Heatmap visualization</span>
+                                    <span class="feature-tag">Feature selection</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-trending-up'></i>
+                                    <h4>plot_feature_importance()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Feature importance visualization for tree-based and linear models. 
+                                    Creates clear, interpretable plots showing which features contribute most to model predictions.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Feature importance</span>
+                                    <span class="feature-tag">Model interpretability</span>
+                                    <span class="feature-tag">Tree & linear models</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="utils-category">
+                        <div class="utils-header">
+                            <i class='bx bx-cog'></i>
+                            <h3>Feature Engineering & Interpretability</h3>
+                        </div>
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-merge'></i>
+                                    <h4>create_combination_features()</h4>
+                                </div>
+                                <p class="function-description">
+                                    Feature engineering function for creating feature combinations and interactions. 
+                                    Automatically generates polynomial features and interaction terms to improve model performance.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">Feature combinations</span>
+                                    <span class="feature-tag">Polynomial features</span>
+                                    <span class="feature-tag">Interaction terms</span>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-header">
+                                    <i class='bx bx-scatter-chart'></i>
+                                    <h4>plot_shap_values()</h4>
+                                </div>
+                                <p class="function-description">
+                                    SHAP values visualization for model interpretability and explainability. 
+                                    Creates comprehensive plots showing how each feature contributes to individual predictions.
+                                </p>
+                                <div class="function-features">
+                                    <span class="feature-tag">SHAP values</span>
+                                    <span class="feature-tag">Model explainability</span>
+                                    <span class="feature-tag">Feature contributions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="utils-footer">
+                    <div class="usage-info">
+                        <h3><i class='bx bx-info-circle'></i> Usage Information</h3>
+                        <p>These functions are designed to be modular and reusable across different machine learning projects. They follow best practices for code organization and include comprehensive error handling. Each function is documented with clear parameter descriptions and usage examples.</p>
+                        
+                        <div class="tech-stack">
+                            <h4>Built with:</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">NumPy</span>
+                                <span class="tech-badge">Pandas</span>
+                                <span class="tech-badge">Matplotlib</span>
+                                <span class="tech-badge">Seaborn</span>
+                                <span class="tech-badge">Scikit-learn</span>
+                                <span class="tech-badge">SHAP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class='bx bx-chevron-up'></i>
+    </button>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 R.P.M. Kras</p>
+        </div>
+    </footer>
+</body>
+</html>
