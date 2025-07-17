@@ -2,7 +2,7 @@
 
 A personal portfolio website showcasing data science and machine learning projects, Kaggle competition achievements, and technical skills.
 
-🌐 **Live Site**: [rbkrs.github.io](https://rbkrs.github.io)
+🌐 **Live Site**: [robkras.com](https://robkras.com) OR [rbkrs.github.io](https://rbkrs.github.io)
 
 ## Overview
 
