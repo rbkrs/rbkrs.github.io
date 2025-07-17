@@ -184,8 +184,25 @@
                         <ul>
                             <li><a href="projects/MLWorkflow.pdf" target="_blank">Workflow guide</a></li>
                             <p class="explanation">Comprehensive reference document outlining my systematic ML approach from data exploration to model deployment.</p>
-                            <li><a href="projects/utils.py" target="_blank">Common functions</a></li>
-                            <p class="explanation">Library of optimized utility functions for preprocessing, visualization, and evaluation that I reuse across projects.</p>
+                            <li>
+                                <details>
+                                    <summary>Common functions</summary>
+                                    <div class="utils-content">
+                                        <p>Library of optimized utility functions for preprocessing, visualization, and evaluation that I reuse across projects:</p>
+                                        <ul>
+                                            <li><strong>generate_stack()</strong> - Stacking ensemble function for combining multiple models with cross-validation</li>
+                                            <li><strong>plot_nums()</strong> - Visualization function for numerical data distributions with histograms and KDE</li>
+                                            <li><strong>plot_cats()</strong> - Visualization function for categorical data using pie charts</li>
+                                            <li><strong>heatmap_nums()</strong> - Correlation heatmap generation with high correlation pair detection</li>
+                                            <li><strong>create_combination_features()</strong> - Feature engineering function for creating feature combinations</li>
+                                            <li><strong>plot_feature_importance()</strong> - Feature importance visualization for tree-based and linear models</li>
+                                            <li><strong>plot_model_performance()</strong> - Model performance evaluation with comprehensive metrics</li>
+                                            <li><strong>oof_cross_val()</strong> - Out-of-fold cross-validation function with averaged predictions</li>
+                                            <li><strong>plot_shap_values()</strong> - SHAP values visualization for model interpretability</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </li>
                         </ul>
                     </div>
                 </div>
