@@ -14,7 +14,6 @@ This is a static website built with vanilla HTML, CSS, and JavaScript, hosted on
 - **Dark Mode**: Toggle between light and dark themes with localStorage persistence
 - **Project Showcase**: Individual pages for each machine learning project
 - **Kaggle Integration**: Competition rankings and performance metrics
-- **Model Explainer Tool**: Interactive tool for analyzing ML models in Jupyter notebooks
 
 ## Project Structure
 
@@ -74,15 +73,6 @@ The site features a sophisticated dark mode system:
 - localStorage persistence across sessions
 - Smooth transitions between light and dark themes
 - Dynamically created toggle button
-
-## Model Explainer Tool
-
-Located in `projects/model-explainer/`, this tool provides:
-- Analysis of Jupyter notebooks (`.ipynb` files)
-- HTML export parsing for model detection
-- Hyperparameter extraction
-- Dataset identification
-- Web-based interface for easy access
 
 ## Development
 
