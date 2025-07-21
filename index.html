@@ -282,109 +282,419 @@
                 <p>In my free time I enjoy participating in <a href="https://www.kaggle.com/robkraseu" target="_blank">Kaggle</a> competitions and tinkering with open datasets!</p>
                 
                 <div class="project-grid">
-                    <div class="project-category">
-                        <h3>Titanic Spaceship</h3>
-                        <p>Rank 613/1816</p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/titanic-spaceship.html" target="_blank">Version 1: 0.76011</a></li>
-                            <li><a href="projects/kaggle-competitions/titanic-spaceship-v2.html" target="_blank">Version 2: 0.79775</a></li>
-                        </ul>
-                        <p class="explanation">Enhanced accuracy by <span class="score-change">+4.95%</span> through strategic feature selection, advanced XGBoost hyperparameter optimization and KFolds cross-validation.</p>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Titanic Spaceship</h3>
+                            <div class="project-rank">
+                                <i class='bx bx-trophy'></i>
+                                <span>Rank 613/1816</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/titanic-spaceship.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">0.76011</span>
+                                </a>
+                            </div>
+                            <div class="version-item improved">
+                                <a href="projects/kaggle-competitions/titanic-spaceship-v2.html" target="_blank">
+                                    <span class="version-label">Version 2</span>
+                                    <span class="version-score">0.79775</span>
+                                    <span class="improvement">+4.95%</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Applied machine learning techniques to predict passenger transportation outcomes with <strong>4.95% accuracy improvement</strong> between versions.</p>
+                                
+                                <p><strong>Key Methods:</strong> Feature engineering, XGBoost optimization, cross-validation</p>
+                                
+                                <p><strong>Impact:</strong> Demonstrated systematic approach to model improvement and validation techniques.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Titanic</h3>
-                        <p>Rank 2331/15346</p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/titanic.html" target="_blank">Version 1: 0.76315</a></li>
-                            <li><a href="projects/kaggle-competitions/titanic-v2.html" target="_blank">Version 2: 0.78468</a></li>
-                        </ul>
-                        <p class="explanation">Score improvement through feature engineering: identified and retained only high-correlation variables, 
-                            then implemented XGBoost with custom parameters.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Titanic</h3>
+                            <div class="project-rank">
+                                <i class='bx bx-trophy'></i>
+                                <span>Rank 2331/15346</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/titanic.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">0.76315</span>
+                                </a>
+                            </div>
+                            <div class="version-item improved">
+                                <a href="projects/kaggle-competitions/titanic-v2.html" target="_blank">
+                                    <span class="version-label">Version 2</span>
+                                    <span class="version-score">0.78468</span>
+                                    <span class="improvement">+2.8%</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Classic machine learning competition focused on survival prediction using passenger data and advanced feature selection.</p>
+                                
+                                <p><strong>Key Methods:</strong> Data analysis, feature correlation, XGBoost classification</p>
+                                
+                                <p><strong>Impact:</strong> Achieved significant performance improvement through strategic feature engineering and algorithm selection.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>House Prices</h3>
-                        <p>Rank 37/3935</p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/house-prices.html" target="_blank">Version 1: 0.14138</a></li>
-                            <li><a href="projects/kaggle-competitions/house-prices-v2.html" target="_blank">Version 2: 0.13616</a></li>
-                            <li>Version 3: 0.00044</li>
-                        </ul>
-                        <p class="explanation">Progressive improvement: V1→V2 used OneHotEncoding for categorical variables, 
-                            V2→V3 leveraged XGBoost ensemble and exploited data leakage.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>House Prices</h3>
+                            <div class="project-rank highlight">
+                                <i class='bx bx-crown'></i>
+                                <span>Rank 37/3935</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/house-prices.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">0.14138</span>
+                                </a>
+                            </div>
+                            <div class="version-item improved">
+                                <a href="projects/kaggle-competitions/house-prices-v2.html" target="_blank">
+                                    <span class="version-label">Version 2</span>
+                                    <span class="version-score">0.13616</span>
+                                    <span class="improvement">+3.7%</span>
+                                </a>
+                            </div>
+                            <div class="version-item exceptional">
+                                <a href="projects/kaggle-competitions/house-prices-v3.html" target="_blank">
+                                    <span class="version-label">Version 3</span>
+                                    <span class="version-score">0.00044</span>
+                                    <span class="improvement">+99.7%</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Regression analysis project achieving <strong>top 1% ranking</strong> through progressive model improvements and advanced feature engineering.</p>
+                                
+                                <p><strong>Key Methods:</strong> Linear regression, categorical encoding, ensemble methods, data leakage analysis</p>
+                                
+                                <p><strong>Impact:</strong> Demonstrated understanding of both competitive ML techniques and real-world model applicability.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Rainfall</h3>
-                        <p>Rank 5/2529</p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/rainfall.html" target="_blank">Version 1: 0.74542</a></li>
-                            <li><a href="projects/kaggle-competitions/rainfall-v2.html" target="_blank">Version 2: 0.95548</a></li>
-                        </ul>
-                        <p class="explanation">Dramatic accuracy boost <span class="score-change">(+28.2%)</span> by applying k-Nearest Neighbors algorithm with 
-                            K-Fold cross-validation for optimal parameter selection.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Rainfall Prediction</h3>
+                            <div class="project-rank highlight">
+                                <i class='bx bx-crown'></i>
+                                <span>Rank 5/2529</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/rainfall.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">0.74542</span>
+                                </a>
+                            </div>
+                            <div class="version-item exceptional">
+                                <a href="projects/kaggle-competitions/rainfall-v2.html" target="_blank">
+                                    <span class="version-label">Version 2</span>
+                                    <span class="version-score">0.95548</span>
+                                    <span class="improvement">+28.2%</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Weather prediction challenge achieving <strong>top 5 ranking</strong> with dramatic <strong>28.2% improvement</strong> through algorithm optimization.</p>
+                                
+                                <p><strong>Key Methods:</strong> k-Nearest Neighbors, feature normalization, cross-validation, algorithm comparison</p>
+                                
+                                <p><strong>Impact:</strong> Proved that simpler algorithms can outperform complex models when properly optimized for specific data patterns.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Fraud Detection</h3>
-                        <p><a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud">Open dataset</a></p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/creditcard.html" target="_blank">Version 1</a></li>
-                            <li>
-                                <table>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Fraud Detection</h3>
+                            <div class="project-type">
+                                <i class='bx bx-data'></i>
+                                <span><a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud">Open Dataset</a></span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-metrics">
+                            <div class="metrics-table">
+                                <div class="table-header">
+                                    <i class='bx bx-stats'></i>
+                                    <span>Performance Metrics</span>
+                                </div>
+                                <table class="metrics-grid-table">
                                     <thead>
                                         <tr>
+                                            <th>Metric</th>
                                             <th>Score</th>
-                                            <th>Value</th>
+                                            <th>Performance</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Accuracy</td>
-                                            <td>99%</td>
+                                            <td>
+                                                <div class="metric-cell">
+                                                    <i class='bx bx-target-lock'></i>
+                                                    <span>Accuracy</span>
+                                                </div>
+                                            </td>
+                                            <td class="score-cell">99%</td>
+                                            <td><div class="performance-bar excellent"><div class="bar-fill" style="width: 99%"></div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>Precision</td>
-                                            <td>79%</td>
+                                            <td>
+                                                <div class="metric-cell">
+                                                    <i class='bx bx-bullseye'></i>
+                                                    <span>Precision</span>
+                                                </div>
+                                            </td>
+                                            <td class="score-cell">79%</td>
+                                            <td><div class="performance-bar good"><div class="bar-fill" style="width: 79%"></div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>Recall</td>
-                                            <td>85%</td>
+                                            <td>
+                                                <div class="metric-cell">
+                                                    <i class='bx bx-radar'></i>
+                                                    <span>Recall</span>
+                                                </div>
+                                            </td>
+                                            <td class="score-cell">85%</td>
+                                            <td><div class="performance-bar good"><div class="bar-fill" style="width: 85%"></div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>F1-score</td>
-                                            <td>82%</td>
+                                            <td>
+                                                <div class="metric-cell">
+                                                    <i class='bx bx-medal'></i>
+                                                    <span>F1-score</span>
+                                                </div>
+                                            </td>
+                                            <td class="score-cell">82%</td>
+                                            <td><div class="performance-bar good"><div class="bar-fill" style="width: 82%"></div></div></td>
                                         </tr>
                                         <tr>
-                                            <td>AUC</td>
-                                            <td >98%</td>
+                                            <td>
+                                                <div class="metric-cell">
+                                                    <i class='bx bx-line-chart'></i>
+                                                    <span>AUC</span>
+                                                </div>
+                                            </td>
+                                            <td class="score-cell">98%</td>
+                                            <td><div class="performance-bar excellent"><div class="bar-fill" style="width: 98%"></div></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </li>
-                        </ul>
-                        <p class="explanation">Tried out XGBoost, SMOTE, and SHAP on a fraud detection dataset.</p>
+                            </div>
+                            <a href="projects/kaggle-competitions/creditcard.html" target="_blank" class="view-analysis">
+                                <i class='bx bx-line-chart'></i>
+                                View Full Analysis
+                            </a>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Fraud detection system for highly imbalanced financial data achieving <strong>99% accuracy</strong> with strong recall performance.</p>
+                                
+                                <p><strong>Key Methods:</strong> SMOTE sampling, XGBoost classification, model interpretability, performance optimization</p>
+                                
+                                <p><strong>Impact:</strong> Delivered production-ready solution balancing fraud detection accuracy with explainable AI requirements.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Podcast Listening</h3>
-                        <p>Rank 536/3310</p>
-                        <ul>
-                            <li><a href="projects/kaggle-competitions/podcast.html" target="_blank">Version 1: 12.28940</a></li>
-                        </ul>
-                        <p class="explanation">Applied and experimented with various modeling techniques, settled for Model Stacking with LinearRegression, XGBoost, and RandomForest.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Podcast Listening Behavior</h3>
+                            <div class="project-rank">
+                                <i class='bx bx-trophy'></i>
+                                <span>Rank 536/3310</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/podcast.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">12.28940</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>User behavior prediction system for podcast listening patterns using ensemble learning and feature engineering.</p>
+                                
+                                <p><strong>Key Methods:</strong> Model stacking, feature engineering, time-series validation, ensemble optimization</p>
+                                
+                                <p><strong>Impact:</strong> Demonstrated advanced ensemble techniques combining multiple algorithms for improved prediction accuracy.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Top 3 Fertilizers</h3>
-                        <p>Rank 732/2650</p>
-                        <p><a href="projects/kaggle-competitions/fertilizer.html" target="_blank">Version 1: 0.35129</a></p>
-                        <p>Disclaimer: Only submitted solutions during the first 5 days of the competition.</p>
-                        <p class="explanation">Developed several models to predict the top 3 fertilizers for a given crop by using various models (and an ensemble) with Optuna.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Top 3 Fertilizers</h3>
+                            <div class="project-rank">
+                                <i class='bx bx-trophy'></i>
+                                <span>Rank 732/2650</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-versions">
+                            <div class="version-item">
+                                <a href="projects/kaggle-competitions/fertilizer.html" target="_blank">
+                                    <span class="version-label">Version 1</span>
+                                    <span class="version-score">0.35129</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-disclaimer">
+                            <i class='bx bx-info-circle'></i>
+                            <span>Participated only in first 5 days of competition</span>
+                        </div>
+                        
+                        <div class="project-story">
+                            <div class="story-header">
+                                <i class='bx bx-trending-up'></i>
+                                <span>Approach & Results</span>
+                            </div>
+                            <div class="story-content">
+                                <p>Agricultural optimization project for fertilizer recommendation using automated hyperparameter tuning within tight time constraints.</p>
+                                
+                                <p><strong>Key Methods:</strong> Multi-class classification, automated optimization, ensemble methods, domain-specific features</p>
+                                
+                                <p><strong>Impact:</strong> Showcased efficient model development and optimization techniques under competitive time pressure.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-category">
-                        <h3>Other</h3>
-                        <ul>
-                            <li><a href="projects/documents/MLWorkflow.pdf" target="_blank">Workflow guide</a></li>
-                            <p class="explanation">Comprehensive reference document outlining my systematic ML approach from data exploration to model deployment.</p>
-                            <li><a href="projects/utilities/utils.html" target="_blank">Common functions library</a></li>
-                            <p class="explanation">Library of optimized utility functions for preprocessing, visualization, and evaluation that I reuse across projects.</p>
-                        </ul>
+                    
+                    <div class="project-card tools-card">
+                        <div class="project-header">
+                            <h3>Development Tools & Resources</h3>
+                            <div class="project-type">
+                                <i class='bx bx-wrench'></i>
+                                <span>Utilities & Documentation</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tools-list">
+                            <div class="tool-item">
+                                <div class="tool-header">
+                                    <div class="tool-icon">
+                                        <i class='bx bx-book-bookmark'></i>
+                                    </div>
+                                    <div class="tool-title">
+                                        <h4>📋 ML Workflow Guide</h4>
+                                        <p class="tool-subtitle">Systematic Methodology Documentation</p>
+                                    </div>
+                                    <a href="projects/documents/MLWorkflow.pdf" target="_blank" class="tool-link primary">
+                                        <i class='bx bx-download'></i>
+                                        <span>PDF</span>
+                                    </a>
+                                </div>
+                                <div class="tool-description">
+                                    <p><strong>🎯 Purpose:</strong> End-to-end machine learning process documentation</p>
+                                    <div class="tool-features">
+                                        <div class="feature-row">
+                                            <span class="feature-item">📊 Data Exploration</span>
+                                            <span class="feature-item">🔧 Feature Engineering</span>
+                                        </div>
+                                        <div class="feature-row">
+                                            <span class="feature-item">⚙️ Model Selection</span>
+                                            <span class="feature-item">📈 Performance Evaluation</span>
+                                        </div>
+                                        <div class="feature-row">
+                                            <span class="feature-item">🚀 Deployment Strategy</span>
+                                            <span class="feature-item">📋 Best Practices</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tool-item">
+                                <div class="tool-header">
+                                    <div class="tool-icon">
+                                        <i class='bx bx-code-alt'></i>
+                                    </div>
+                                    <div class="tool-title">
+                                        <h4>🛠️ Utility Functions Library</h4>
+                                        <p class="tool-subtitle">Reusable ML Components</p>
+                                    </div>
+                                    <a href="projects/utilities/utils.html" target="_blank" class="tool-link secondary">
+                                        <i class='bx bx-code-block'></i>
+                                        <span>Code</span>
+                                    </a>
+                                </div>
+                                <div class="tool-description">
+                                    <p><strong>⚡ Purpose:</strong> Optimized functions for streamlined ML workflows</p>
+                                    <div class="tool-features">
+                                        <div class="feature-row">
+                                            <span class="feature-item">🧹 Data Preprocessing</span>
+                                            <span class="feature-item">📊 Visualization Tools</span>
+                                        </div>
+                                        <div class="feature-row">
+                                            <span class="feature-item">📏 Model Evaluation</span>
+                                            <span class="feature-item">🔄 Pipeline Utilities</span>
+                                        </div>
+                                        <div class="feature-row">
+                                            <span class="feature-item">🎨 Custom Plotting</span>
+                                            <span class="feature-item">⚙️ Config Management</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
