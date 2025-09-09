@@ -6,7 +6,7 @@ A personal portfolio website showcasing data science and machine learning projec
 
 ## Overview
 
-This is a static website built with vanilla HTML, CSS, and JavaScript, hosted on GitHub Pages. It showcases Robin (R.P.M.) Kras's work in data science, machine learning, and AI, including competition results from Kaggle and various project implementations.
+This is a static website built with vanilla HTML, CSS, and JavaScript, hosted on GitHub Pages. It showcases my work in data science, machine learning, and AI, including competition results from Kaggle and various project implementations.
 
 ## Features
 
