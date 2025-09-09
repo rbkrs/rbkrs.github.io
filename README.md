@@ -1,4 +1,4 @@
-# Rob Kras
+# My portfolio
 
 A personal portfolio website showcasing data science and machine learning projects, Kaggle competition achievements, and technical skills.
 
