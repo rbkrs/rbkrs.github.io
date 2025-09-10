@@ -102,6 +102,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Contact
 
 - **Email**: robkraseu@gmail.com
-- **LinkedIn**: [Robin Kras](https://www.linkedin.com/in/robin-r-p-m-kras-8b4bb31bb/)
+- **LinkedIn**: [Robin Kras](https://www.linkedin.com/in/robkras/)
 - **GitHub**: [rbkrs](https://github.com/rbkrs)
 - **Kaggle**: [robkraseu](https://www.kaggle.com/robkraseu)
