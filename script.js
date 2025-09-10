@@ -148,24 +148,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Update last updated timestamp
-    const updateTimestamp = () => {
-        const now = new Date();
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const year = now.getFullYear();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        const timestamp = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
-        const lastUpdatedElement = document.getElementById('last-updated');
-        if (lastUpdatedElement) {
-            lastUpdatedElement.textContent = `Last updated: ${timestamp}`;
+    // Update last updated timestamp from GitHub
+    const updateTimestamp = async () => {
+        try {
+            const response = await fetch('https://api.github.com/repos/rbkrs/rbkrs.github.io/commits?per_page=1');
+            if (response.ok) {
+                const commits = await response.json();
+                if (commits.length > 0) {
+                    const lastCommitDate = new Date(commits[0].commit.author.date);
+                    const day = String(lastCommitDate.getDate()).padStart(2, '0');
+                    const month = String(lastCommitDate.getMonth() + 1).padStart(2, '0');
+                    const year = lastCommitDate.getFullYear();
+                    const hours = String(lastCommitDate.getHours()).padStart(2, '0');
+                    const minutes = String(lastCommitDate.getMinutes()).padStart(2, '0');
+                    
+                    const timestamp = `${day}-${month}-${year} ${hours}:${minutes}`;
+                    const lastUpdatedElement = document.getElementById('last-updated');
+                    if (lastUpdatedElement) {
+                        lastUpdatedElement.textContent = `Last updated: ${timestamp}`;
+                    }
+                }
+            } else {
+                const lastUpdatedElement = document.getElementById('last-updated');
+                if (lastUpdatedElement) {
+                    lastUpdatedElement.textContent = 'Last updated: GitHub API unavailable';
+                }
+            }
+        } catch (error) {
+            const lastUpdatedElement = document.getElementById('last-updated');
+            if (lastUpdatedElement) {
+                lastUpdatedElement.textContent = 'Last updated: Unable to fetch';
+            }
         }
     };
 
-    // Set initial timestamp and update every second
+    // Set initial timestamp
     updateTimestamp();
-    setInterval(updateTimestamp, 1000);
 });
