@@ -7,7 +7,7 @@
 [![Website](https://img.shields.io/badge/🌐_Live_Site-robkras.com-blue?style=for-the-badge)](https://robkras.com)
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-rbkrs.github.io-black?style=for-the-badge&logo=github)](https://rbkrs.github.io)
 
-POWERED BY
+*POWERED BY*
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
