@@ -19,7 +19,7 @@
 
 ## 📖 Overview
 
-A **modern, responsive portfolio website** built with vanilla web technologies, showcasing my journey in data science, machine learning, and AI. The site features interactive project demonstrations, Kaggle competition achievements, and comprehensive technical documentation.
+This repo details a **modern, responsive portfolio website** built with vanilla web technologies, showcasing my journey in data science, machine learning, and AI. The site features interactive project demonstrations, Kaggle competition achievements, and comprehensive technical documentation.
 
 > *Static website hosted on GitHub Pages with a focus on performance and accessibility*
 
