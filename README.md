@@ -25,34 +25,8 @@ This repo details a **modern, responsive portfolio website** built with vanilla 
 
 ---
 
-## ✨ Key Features
-
-<table>
-<tr>
-  
-<td width="50%">
-
-### 🚀 **Content & Functionality**
-- 📊 **Project Showcase** - Interactive ML project pages
-- 🏆 **Kaggle Integration** - Live competition rankings
-- 📈 **Performance Metrics** - Detailed model results
-- 🔗 **Social Integration** - Direct links to profiles
-
-</td>
-</tr>
-</table>
-
----
-
 ## 🛠️ Technical Stack
 
-### **Frontend Technologies**
-- **HTML5** - Semantic markup and accessibility
-- **CSS3** - Modern styling with flexbox/grid
-- **JavaScript** - Interactive features and dark mode
-- **GitHub Pages** - Static hosting and deployment
-
-### **Key Skills Showcased**
 ```
 Programming Languages: Python, C, C++, Scala, Assembly
 ML Frameworks: TensorFlow, PyTorch, Keras, scikit-learn
