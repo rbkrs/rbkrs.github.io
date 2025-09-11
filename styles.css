@@ -285,6 +285,10 @@ strong {
     font-weight: 400;
 }
 
+.intro {
+    text-align: center;
+}
+
 .highlights {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
