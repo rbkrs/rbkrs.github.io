@@ -29,15 +29,7 @@ This repo details a **modern, responsive portfolio website** built with vanilla 
 
 <table>
 <tr>
-<td width="50%">
-
-### 🎨 **Design & UX**
-- 📱 **Responsive Design** - Optimized for all devices
-- 🌙 **Dark Mode Toggle** - With localStorage persistence
-- ⚡ **Fast Loading** - Vanilla JS for optimal performance
-- 🎯 **Clean Interface** - Intuitive navigation
-
-</td>
+  
 <td width="50%">
 
 ### 🚀 **Content & Functionality**
