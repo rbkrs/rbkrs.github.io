@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Optimal Fertilizers - Rob Kras</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-detail {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .project-hero {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+        }
+
+        .competition-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .stat-value {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .approach-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .approach-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition-base);
+        }
+
+        .approach-list li:hover {
+            transform: translateX(8px);
+            background: var(--secondary-bg);
+        }
+
+        .approach-list li::before {
+            content: '▸';
+            color: var(--accent-color);
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            transition: var(--transition-fast);
+        }
+
+        .tech-badge:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .key-insight {
+            background: rgba(63, 185, 80, 0.1);
+            border-left: 3px solid var(--success-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        .key-insight h4 {
+            color: var(--success-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+    </style>
+    <script src="../../script.js" defer></script>
+</head>
+<body>
+    <div class="project-detail">
+        <a href="../../index.html#projects" class="back-link">Back to Portfolio</a>
+
+        <div class="project-hero">
+            <div class="competition-badge">Playground Series S5E6</div>
+            <h1>Predicting Optimal Fertilizers</h1>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); margin-top: 1rem;">
+                A multi-class classification challenge predicting the top 3 most suitable fertilizer types for crops based on soil composition, environmental conditions, and agricultural context.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Competition Rank</div>
+                    <div class="stat-value">732 / 2,650</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Percentile</div>
+                    <div class="stat-value">Top 28%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Evaluation Metric</div>
+                    <div class="stat-value">MAP@3</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Challenge</div>
+                    <div class="stat-value">Multi-label</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Problem Overview</h2>
+        <p>
+            This agricultural ML competition focused on recommending the top 3 fertilizer types for given soil and crop conditions - a practical application for precision agriculture. The challenge involved multi-label classification where the model needed to predict ranked recommendations. Features included soil nutrient levels (N, P, K), pH, moisture, temperature, crop type, and region. The evaluation metric was Mean Average Precision at 3 (MAP@3), emphasizing both accuracy and ranking quality.
+        </p>
+
+        <h2 class="section-title">Technical Approach</h2>
+        <ul class="approach-list">
+            <li><strong>Multi-Label Strategy:</strong> Trained separate classifiers for each rank position with adjusted probability calibration</li>
+            <li><strong>Ensemble Methods:</strong> Combined CatBoost and XGBoost models with averaged probability outputs</li>
+            <li><strong>Feature Engineering:</strong> Created nutrient ratio features (N:P:K), soil health indicators, and crop-specific optimal ranges</li>
+            <li><strong>Domain Knowledge:</strong> Incorporated agricultural principles about nutrient interactions and crop requirements</li>
+            <li><strong>Stacking Approach:</strong> Used a two-level stacking architecture with diversity in base models</li>
+            <li><strong>Probability Calibration:</strong> Applied Platt scaling to ensure well-calibrated probability predictions for ranking</li>
+        </ul>
+
+        <div class="key-insight">
+            <h4>Key Insight</h4>
+            <p>
+                The MAP@3 metric required not just accurate predictions but proper ranking. I found that training models to output well-calibrated probabilities was more important than maximizing classification accuracy alone. Additionally, understanding agronomic principles - like how nitrogen, phosphorus, and potassium work together - enabled creating meaningful interaction features that improved recommendation quality.
+            </p>
+        </div>
+
+        <h2 class="section-title">Technology Stack</h2>
+        <div class="tech-stack">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">NumPy</span>
+            <span class="tech-badge">Scikit-learn</span>
+            <span class="tech-badge">XGBoost</span>
+            <span class="tech-badge">CatBoost</span>
+            <span class="tech-badge">Matplotlib</span>
+            <span class="tech-badge">Seaborn</span>
+        </div>
+
+        <h2 class="section-title">Lessons Learned</h2>
+        <p>
+            This competition taught me about ranking problems and the importance of understanding evaluation metrics deeply. MAP@3 requires a different approach than simple classification - it's not enough to predict the right fertilizer, you need to rank the top 3 in order of suitability. This has parallels to recommendation systems in production environments.
+        </p>
+        <p>
+            It also reinforced that spending time understanding the domain (agriculture in this case) pays dividends in feature engineering. Even basic knowledge about soil chemistry and crop nutrition requirements led to features that significantly boosted performance.
+        </p>
+    </div>
+</body>
+</html>
