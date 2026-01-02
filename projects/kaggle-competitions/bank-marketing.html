@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Marketing Binary Classification - Rob Kras</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-detail {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .project-hero {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+        }
+
+        .competition-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .stat-value {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .approach-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .approach-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition-base);
+        }
+
+        .approach-list li:hover {
+            transform: translateX(8px);
+            background: var(--secondary-bg);
+        }
+
+        .approach-list li::before {
+            content: '▸';
+            color: var(--accent-color);
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            transition: var(--transition-fast);
+        }
+
+        .tech-badge:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .key-insight {
+            background: rgba(63, 185, 80, 0.1);
+            border-left: 3px solid var(--success-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        .key-insight h4 {
+            color: var(--success-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+    </style>
+    <script src="../../script.js" defer></script>
+</head>
+<body>
+    <div class="project-detail">
+        <a href="../../index.html#projects" class="back-link">Back to Portfolio</a>
+
+        <div class="project-hero">
+            <div class="competition-badge">Playground Series S5E8</div>
+            <h1>Binary Classification with a Bank Dataset</h1>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); margin-top: 1rem;">
+                Predicting whether bank clients will subscribe to term deposits based on demographic data, contact history, and economic indicators to optimize marketing campaigns.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Competition Rank</div>
+                    <div class="stat-value">576 / 3,367</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Percentile</div>
+                    <div class="stat-value">Top 17%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Evaluation Metric</div>
+                    <div class="stat-value">ROC-AUC</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Participation</div>
+                    <div class="stat-value">First 7 days</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Problem Overview</h2>
+        <p>
+            This competition involved predicting customer responses to bank marketing campaigns - a classic imbalanced classification problem with significant business impact. The dataset included customer demographics, previous campaign interactions, economic context indicators, and contact details. Success in this task directly translates to more efficient marketing spend and better customer targeting.
+        </p>
+
+        <h2 class="section-title">Technical Approach</h2>
+        <ul class="approach-list">
+            <li><strong>Advanced Feature Engineering:</strong> Created features capturing campaign recency, contact frequency patterns, and customer lifecycle indicators</li>
+            <li><strong>Stratified K-Fold Validation:</strong> Implemented 10-fold stratified CV to handle class imbalance effectively</li>
+            <li><strong>Hyperparameter Optimization:</strong> Used Optuna for systematic hyperparameter tuning across all models</li>
+            <li><strong>Ensemble Architecture:</strong> Blended LightGBM, XGBoost, and CatBoost with optimized weights</li>
+            <li><strong>Class Imbalance Handling:</strong> Applied scale_pos_weight and focal loss to address the minority class</li>
+            <li><strong>Feature Selection:</strong> Removed multicollinear features and used SHAP for feature importance analysis</li>
+        </ul>
+
+        <div class="key-insight">
+            <h4>Key Insight</h4>
+            <p>
+                Despite only participating in the first 7 days of the competition, I achieved top 17% through efficient iteration and focused experimentation. The key was identifying that previous campaign outcomes were the strongest predictors, but combining them with economic indicators (employment variation rate, consumer confidence index) provided crucial context. This competition reinforced that domain understanding accelerates model development significantly.
+            </p>
+        </div>
+
+        <h2 class="section-title">Technology Stack</h2>
+        <div class="tech-stack">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">NumPy</span>
+            <span class="tech-badge">Scikit-learn</span>
+            <span class="tech-badge">LightGBM</span>
+            <span class="tech-badge">XGBoost</span>
+            <span class="tech-badge">CatBoost</span>
+            <span class="tech-badge">Optuna</span>
+            <span class="tech-badge">SHAP</span>
+            <span class="tech-badge">Imbalanced-learn</span>
+        </div>
+
+        <h2 class="section-title">Lessons Learned</h2>
+        <p>
+            This was an incredibly fun competition that taught me the value of rapid prototyping and systematic experimentation. By structuring my workflow with version control, configuration management, and automated validation pipelines, I could iterate quickly even with limited time. The experience mirrors real-world data science where you often need to deliver results under time constraints.
+        </p>
+        <p>
+            From a DevOps perspective, I also set up a reproducible pipeline using Python scripts with configuration files (YAML), making it easy to track experiments and reproduce results - practices I now use daily in my role as a Data and DevOps Engineer.
+        </p>
+    </div>
+</body>
+</html>
