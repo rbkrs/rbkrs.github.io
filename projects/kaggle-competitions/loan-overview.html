@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Loan Payback - Rob Kras</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-detail {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .project-hero {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+        }
+
+        .competition-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .stat-value {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .approach-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .approach-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition-base);
+        }
+
+        .approach-list li:hover {
+            transform: translateX(8px);
+            background: var(--secondary-bg);
+        }
+
+        .approach-list li::before {
+            content: '▸';
+            color: var(--accent-color);
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            transition: var(--transition-fast);
+        }
+
+        .tech-badge:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+        }
+
+        .notebook-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition-base);
+        }
+
+        .notebook-link:hover {
+            background: var(--accent-bright);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .key-insight {
+            background: rgba(63, 185, 80, 0.1);
+            border-left: 3px solid var(--success-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        .key-insight h4 {
+            color: var(--success-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+    </style>
+    <script src="../../script.js" defer></script>
+</head>
+<body>
+    <div class="project-detail">
+        <a href="../../index.html" class="back-link">Back to Portfolio</a>
+
+        <div class="project-hero">
+            <div class="competition-badge">Playground Series S5E11</div>
+            <h1>Predicting Loan Payback</h1>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); margin-top: 1rem;">
+                A binary classification challenge predicting whether loan applicants will successfully repay their loans based on financial and demographic features.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Competition Rank</div>
+                    <div class="stat-value">172 / 3,724</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Percentile</div>
+                    <div class="stat-value">Top 4%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Evaluation Metric</div>
+                    <div class="stat-value">ROC-AUC</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Achievement</div>
+                    <div class="stat-value">🏆 Silver</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Problem Overview</h2>
+        <p>
+            This competition focused on predicting loan repayment likelihood, a critical task in financial risk assessment. The challenge required analyzing applicant data including credit history, employment status, income levels, and loan characteristics to determine default risk. This type of prediction is essential for banks and lending institutions to make informed lending decisions.
+        </p>
+
+        <h2 class="section-title">Technical Approach</h2>
+        <ul class="approach-list">
+            <li><strong>Feature Engineering:</strong> Created interaction features between income and loan amount, debt-to-income ratios, and credit utilization metrics</li>
+            <li><strong>Missing Value Strategy:</strong> Applied sophisticated imputation techniques using KNN and iterative imputation for numerical features</li>
+            <li><strong>Model Architecture:</strong> Ensemble of gradient boosting models (XGBoost, LightGBM, CatBoost) with carefully tuned hyperparameters</li>
+            <li><strong>Cross-Validation:</strong> Implemented stratified K-fold validation to ensure robust performance across different risk segments</li>
+            <li><strong>Threshold Optimization:</strong> Fine-tuned classification thresholds to maximize ROC-AUC score</li>
+            <li><strong>Model Stacking:</strong> Combined multiple base models using logistic regression as meta-learner</li>
+        </ul>
+
+        <div class="key-insight">
+            <h4>Key Insight</h4>
+            <p>
+                The most impactful features were credit history length, debt-to-income ratio, and payment history. However, creating derived features that captured the interaction between loan amount and applicant income significantly boosted model performance, highlighting the importance of domain knowledge in feature engineering.
+            </p>
+        </div>
+
+        <h2 class="section-title">Technology Stack</h2>
+        <div class="tech-stack">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">NumPy</span>
+            <span class="tech-badge">Scikit-learn</span>
+            <span class="tech-badge">XGBoost</span>
+            <span class="tech-badge">LightGBM</span>
+            <span class="tech-badge">CatBoost</span>
+            <span class="tech-badge">Optuna</span>
+            <span class="tech-badge">SHAP</span>
+            <span class="tech-badge">Matplotlib</span>
+            <span class="tech-badge">Seaborn</span>
+        </div>
+
+        <h2 class="section-title">Lessons Learned</h2>
+        <p>
+            This competition reinforced the importance of understanding the business context behind the data. In financial prediction tasks, interpretability is as important as accuracy - stakeholders need to understand why a model makes certain predictions. Using SHAP values to explain model decisions not only helped with feature engineering but also provided insights into which factors most influence loan repayment probability.
+        </p>
+
+        <a href="loan.html" class="notebook-link">View Full Jupyter Notebook →</a>
+    </div>
+</body>
+</html>
