@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Rob Kras | Data Engineer</title>
+    <meta name="description" content="Explore all projects of Rob Kras, showcasing expertise in Databricks, Azure, and machine learning.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">RK</a>
+                <div class="nav-links">
+                    <a href="index.html#about" class="nav-link">About</a>
+                    <a href="index.html#experience" class="nav-link">Experience</a>
+                    <a href="index.html#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="Robin_Kras_resume.pdf" download class="nav-link btn-resume">Resume</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Projects Section -->
+        <section class="section" style="padding-top: calc(var(--spacing-2xl) + 80px);">
+            <div class="section-container">
+                <h2 class="section-title">All Projects</h2>
+                <p class="section-subtitle">
+                    A comprehensive collection of projects showcasing my expertise in data engineering, machine learning, and cloud infrastructure.
+                </p>
+
+                <div class="projects-grid">
+                    <!-- Rainfall Prediction -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Rainfall Prediction</h3>
+                            <span class="project-rank">Top 0.2%</span>
+                        </div>
+                        <p class="project-description">
+                            Feature engineering, K-Folds cross-validation, and ensemble methods. Discovered that simpler algorithms (KNN) can outperform complex ensembles when properly optimized.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">KNN</span>
+                            <span class="tag">Ensemble</span>
+                            <span class="tag">K-Folds</span>
+                            <span class="tag">Feature Engineering</span>
+                            <span class="tag">Hyperparameter Tuning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/rainfall.html" class="project-link">V1</a>
+                            <a href="projects/kaggle-competitions/rainfall-v2.html" class="project-link">V2</a>
+                        </div>
+                    </article>
+
+                    <!-- House Prices Prediction -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">House Prices Prediction</h3>
+                            <span class="project-rank">Top 1%</span>
+                        </div>
+                        <p class="project-description">
+                            Regression techniques with domain knowledge and SHAP for feature importance analysis. Discovered and exploited data leakage for near-perfect score.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Regression</span>
+                            <span class="tag">SHAP</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Data Leakage</span>
+                            <span class="tag">Domain Knowledge</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/house-prices.html" class="project-link">V1</a>
+                            <a href="projects/kaggle-competitions/house-prices-v2.html" class="project-link">V2</a>
+                            <a href="projects/kaggle-competitions/house-prices-v3.html" class="project-link">V3</a>
+                        </div>
+                    </article>
+
+                    <!-- Loan Payback Prediction -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Loan Payback Prediction</h3>
+                            <span class="project-rank">Top 4%</span>
+                        </div>
+                        <p class="project-description">
+                            Binary classification for financial risk assessment. Feature engineering combining credit metrics, debt-to-income ratios, and payment history.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Classification</span>
+                            <span class="tag">Ensemble</span>
+                            <span class="tag">SHAP</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">LightGBM</span>
+                            <span class="tag">CatBoost</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/loan-overview.html" class="project-link">Overview</a>
+                            <a href="projects/kaggle-competitions/loan.html" class="project-link">Notebook</a>
+                        </div>
+                    </article>
+
+                    <!-- Music BPM Prediction -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Music BPM Prediction</h3>
+                            <span class="project-rank">Top 5%</span>
+                        </div>
+                        <p class="project-description">
+                            Predicting song tempo from audio features. Combined signal processing with machine learning, leveraging music theory for feature engineering.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Audio ML</span>
+                            <span class="tag">Regression</span>
+                            <span class="tag">Signal Processing</span>
+                            <span class="tag">Gradient Boosting</span>
+                            <span class="tag">Feature Engineering</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/music-bpm.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Road Accident Risk -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Road Accident Risk</h3>
+                            <span class="project-rank">Top 8%</span>
+                        </div>
+                        <p class="project-description">
+                            Ensemble methods predicting accident risk. Created temporal and weather interaction features. Containerized training pipeline using Docker.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Ensemble</span>
+                            <span class="tag">Optuna</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Feature Engineering</span>
+                            <span class="tag">Hyperparameter Optimization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/accident-risk.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Bank Marketing -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Bank Marketing</h3>
+                            <span class="project-rank">Top 17%</span>
+                        </div>
+                        <p class="project-description">
+                            Customer response prediction in 7 days. YAML configuration management for rapid prototyping and experimentation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Classification</span>
+                            <span class="tag">Optuna</span>
+                            <span class="tag">YAML Config</span>
+                            <span class="tag">Rapid Prototyping</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/bank-marketing.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Podcast Listening Time -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Podcast Listening Time</h3>
+                            <span class="project-rank">Top 16%</span>
+                        </div>
+                        <p class="project-description">
+                            Time series regression with temporal features and advanced stacking techniques for improved predictions.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Time Series</span>
+                            <span class="tag">Stacking</span>
+                            <span class="tag">Temporal Features</span>
+                            <span class="tag">Regression</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/podcast-listening.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Optimal Fertilizer -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Optimal Fertilizer</h3>
+                            <span class="project-rank">Top 28%</span>
+                        </div>
+                        <p class="project-description">
+                            Multi-label classification with MAP@3 optimization and agricultural domain knowledge for crop recommendation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Multi-label</span>
+                            <span class="tag">MAP@3</span>
+                            <span class="tag">Domain Knowledge</span>
+                            <span class="tag">Classification</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/optimal-fertilizer.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Titanic Survival -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Titanic Survival</h3>
+                            <span class="project-rank">Top 15%</span>
+                        </div>
+                        <p class="project-description">
+                            First Kaggle experience. Feature engineering fundamentals and XGBoost for binary classification.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Feature Engineering</span>
+                            <span class="tag">Classification</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/titanic.html" class="project-link">V1</a>
+                            <a href="projects/kaggle-competitions/titanic-v2.html" class="project-link">V2</a>
+                        </div>
+                    </article>
+
+                    <!-- Spaceship Titanic -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Spaceship Titanic</h3>
+                            <span class="project-rank">Top 34%</span>
+                        </div>
+                        <p class="project-description">
+                            Lessons on overfitting and feature correlation. Improved model through careful feature selection.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Classification</span>
+                            <span class="tag">Feature Selection</span>
+                            <span class="tag">Overfitting</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/titanic-spaceship.html" class="project-link">V1</a>
+                            <a href="projects/kaggle-competitions/titanic-spaceship-v2.html" class="project-link">V2</a>
+                        </div>
+                    </article>
+
+                    <!-- Credit Card Fraud -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Credit Card Fraud</h3>
+                            <span class="project-rank">-</span>
+                        </div>
+                        <p class="project-description">
+                            Imbalanced data handling with SMOTE. Learned proper application within K-Folds cross-validation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Imbalanced Data</span>
+                            <span class="tag">SMOTE</span>
+                            <span class="tag">K-Folds</span>
+                            <span class="tag">Classification</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/creditcard.html" class="project-link">View</a>
+                        </div>
+                    </article>
+
+                    <!-- Personality Type Prediction -->
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Personality Type</h3>
+                            <span class="project-rank">Top 34%</span>
+                        </div>
+                        <p class="project-description">
+                            Limited data with advanced oversampling and Bayesian optimization for hyperparameter tuning.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">SMOTE</span>
+                            <span class="tag">Bayesian Opt</span>
+                            <span class="tag">Classification</span>
+                            <span class="tag">Small Data</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/kaggle-competitions/introvert.html" class="project-link">View</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <p class="footer-text">&copy; 2026 Rob Kras. Built with passion for data.</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/rob-kras/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/rbkrs" target="_blank">GitHub</a>
+                    <a href="https://www.kaggle.com/robkraseu" target="_blank">Kaggle</a>
+                    <a href="mailto:robkraseu@gmail.com">Email</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+                                <span class="tag">K-Folds</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="projects/kaggle-competitions/rainfall.html" class="project-link">V1</a>
+                                <a href="projects/kaggle-competitions/rainfall-v2.html" class="project-link">V2</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-header">
+                            <h4 class="project-title">House Prices Prediction</h4>
+                            <span class="project-rank">Top 1%</span>
+                        </div>
+                        <p class="project-description">
+                            Major breakthrough in regression techniques. Incorporated domain knowledge and used SHAP for
+                            feature importance analysis. Achieved rank 37 out of 3,935 participants, ultimately discovering
+                            and exploiting data leakage for near-perfect score.
+                        </p>
+                        <div class="project-meta">
+                            <div class="project-tags">
+                                <span class="tag">Regression</span>
+                                <span class="tag">SHAP</span>
+                                <span class="tag">XGBoost</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="projects/kaggle-competitions/house-prices.html" class="project-link">V1</a>
+                                <a href="projects/kaggle-competitions/house-prices-v2.html" class="project-link">V2</a>
+                                <a href="projects/kaggle-competitions/house-prices-v3.html" class="project-link">V3</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-header">
+                            <h4 class="project-title">Predicting Loan Payback</h4>
+                            <span class="project-rank">Top 4%</span>
+                        </div>
+                        <p class="project-description">
+                            Binary classification for financial risk assessment. Applied sophisticated feature engineering
+                            combining credit metrics, debt-to-income ratios, and payment history. Ensemble of XGBoost,
+                            LightGBM, and CatBoost emphasized interpretability using SHAP values. Rank 172 / 3,724.
+                        </p>
+                        <div class="project-meta">
+                            <div class="project-tags">
+                                <span class="tag">Classification</span>
+                                <span class="tag">Ensemble</span>
+                                <span class="tag">SHAP</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="projects/kaggle-competitions/loan-overview.html" class="project-link">Overview</a>
+                                <a href="projects/kaggle-competitions/loan.html" class="project-link">Notebook</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Add remaining projects here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2026 Rob Kras</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/rob-kras/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/rbkrs" target="_blank">GitHub</a>
+                    <a href="https://www.kaggle.com/robkraseu" target="_blank">Kaggle</a>
+                    <a href="mailto:robkraseu@gmail.com">Email</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
