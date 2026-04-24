@@ -16,8 +16,6 @@
 
 </div>
 
----
-
 ## 📄 License
 
 <div align="center">
