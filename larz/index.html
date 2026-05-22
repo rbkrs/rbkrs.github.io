@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Larz!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0f0a1e;
+            --card: #1a1030;
+            --border: #2e1f50;
+            --text: #f0e6ff;
+            --muted: #9d87c0;
+            --accent: #c084fc;
+            --accent2: #f472b6;
+            --gold: #fbbf24;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(192, 132, 252, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(244, 114, 182, 0.10) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page { position: relative; z-index: 1; }
+
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+
+        .hero-emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+            animation: bounce 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to   { transform: translateY(-12px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent2), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), var(--accent2));
+            margin: 0 auto 3rem;
+            border-radius: 2px;
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0%   { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        .gallery-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .video-card video {
+            width: 100%;
+            display: block;
+            max-height: 400px;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .photo-grid {
+            columns: 4 220px;
+            column-gap: 1rem;
+        }
+
+        .photo-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(192, 132, 252, 0.2);
+        }
+
+        .photo-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .photo-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 10, 30, 0.4);
+            opacity: 0;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .photo-item:hover .overlay { opacity: 1; }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 3, 15, 0.96);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(46, 31, 80, 0.9);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover { background: rgba(192, 132, 252, 0.3); }
+
+        .lightbox-nav {
+            background: rgba(46, 31, 80, 0.9);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover { background: rgba(192, 132, 252, 0.3); }
+
+        .lightbox-counter {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-size: 0.85rem;
+            background: rgba(15, 10, 30, 0.8);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .closing {
+            text-align: center;
+            padding: 4rem 2rem 4rem;
+            max-width: 560px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .closing-text {
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .closing-sig {
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .back-link:hover { color: var(--text); border-color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .photo-grid { columns: 2 140px; }
+            .hero { padding: 4rem 1.5rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="confetti-container" id="confettiContainer"></div>
+
+<div class="page">
+    <div class="hero">
+        <span class="hero-emoji">🎂</span>
+        <h1>Happy Birthday, Larz!</h1>
+        <p>Voor jou: een verzameling van momenten, herinneringen en gekkigheid. Geniet ervan!</p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="gallery-section">
+
+        <p class="section-label">Video&#8217;s</p>
+        <div class="videos-grid">
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="20230818_144352.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="20230818_144510.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="VID-20250709-WA0013.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <p class="section-label">Foto&#8217;s</p>
+        <div class="photo-grid" id="photoGrid">
+            <div class="photo-item" onclick="openLightbox(0)">
+                <img src="IMG-20220611-WA0002.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(1)">
+                <img src="IMG-20230126-WA0000.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(2)">
+                <img src="IMG-20230615-WA0006.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(3)">
+                <img src="20230805_151055.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(4)">
+                <img src="IMG-20230805-WA0005.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(5)">
+                <img src="IMG-20230806-WA0001.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(6)">
+                <img src="20230807_160239.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(7)">
+                <img src="20230807_192202.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(8)">
+                <img src="IMG-20230807-WA0027.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(9)">
+                <img src="20230808_120837.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(10)">
+                <img src="IMG-20230808-WA0025.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(11)">
+                <img src="IMG-20230808-WA0031.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(12)">
+                <img src="20230809_113252.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(13)">
+                <img src="20230809_113356.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(14)">
+                <img src="20230809_115005.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(15)">
+                <img src="20230809_135057.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(16)">
+                <img src="20230809_135101.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(17)">
+                <img src="IMG-20230810-WA0009.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(18)">
+                <img src="20230811_125045.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(19)">
+                <img src="20230811_161710.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(20)">
+                <img src="20230811_162718.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(21)">
+                <img src="IMG-20230811-WA0102.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(22)">
+                <img src="IMG-20230811-WA0109.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(23)">
+                <img src="IMG-20230811-WA0115.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(24)">
+                <img src="IMG-20230811-WA0125.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(25)">
+                <img src="IMG-20230811-WA0154.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(26)">
+                <img src="20230812_131247.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(27)">
+                <img src="20230812_175458.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(28)">
+                <img src="20230812_175503.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(29)">
+                <img src="20230812_202444.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(30)">
+                <img src="IMG-20230815-WA0028.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(31)">
+                <img src="20230818_152227.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(32)">
+                <img src="20230818_153519.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(33)">
+                <img src="20230821_091135.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(34)">
+                <img src="IMG-20230822-WA0006.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(35)">
+                <img src="IMG-20231222-WA0003.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(36)">
+                <img src="IMG-20240108-WA0002.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(37)">
+                <img src="20240629_150253.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(38)">
+                <img src="IMG-20250221-WA0007.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(39)">
+                <img src="8c3c1578-bb44-42f1-ae00-10c467b85af1.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(40)">
+                <img src="20250703_174117.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(41)">
+                <img src="20250707_215450.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(42)">
+                <img src="IMG-20250707-WA0009.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(43)">
+                <img src="20250708_162439.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(44)">
+                <img src="20250708_174400.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(45)">
+                <img src="20250708_174741.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(46)">
+                <img src="20250708_175331.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(47)">
+                <img src="20250708_184526.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(48)">
+                <img src="20250709_145904.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(49)">
+                <img src="20250709_150115.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(50)">
+                <img src="20250709_150248.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(51)">
+                <img src="IMG-20250709-WA0010.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(52)">
+                <img src="20250709_155342.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(53)">
+                <img src="20250710_233520.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(54)">
+                <img src="20250711_184530.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(55)">
+                <img src="20250711_185023.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(56)">
+                <img src="20250711_190320.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(57)">
+                <img src="20250711_190347.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(58)">
+                <img src="20250711_191243.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(59)">
+                <img src="20250712_093557.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(60)">
+                <img src="20250712_095841.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(61)">
+                <img src="IMG-20250712-WA0026.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(62)">
+                <img src="IMG-20251108-WA0016.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(63)">
+                <img src="image-20.png" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(64)">
+                <img src="Screenshot_20260522_193627_WhatsApp.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(65)">
+                <img src="Screenshot_20260522_193702_WhatsApp.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+            <div class="photo-item" onclick="openLightbox(66)">
+                <img src="Screenshot_20260522_193850_WhatsApp.jpg" loading="lazy" alt="">
+                <div class="overlay">&#128269;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="closing">
+        <p class="closing-text">
+            19 jaar vriendschap - en nog lang niet klaar. Bedankt dat je er altijd was, Larz.
+            Ik wens je niets minder dan goede gezondheid, geluk en alle voorspoed die de wereld te bieden heeft.
+            Op nog vele jaren onder elkaars gezelschap.
+        </p>
+        <p class="closing-sig">Rob</p>
+        <a href="../index.html" class="back-link">&#8592; back</a>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+    <div class="lightbox-inner">
+        <button class="lightbox-nav" onclick="navigate(-1)">&#8592;</button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav" onclick="navigate(1)">&#8594;</button>
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+    const photos = [
+        'IMG-20220611-WA0002.jpg',
+        'IMG-20230126-WA0000.jpg',
+        'IMG-20230615-WA0006.jpg',
+        '20230805_151055.jpg',
+        'IMG-20230805-WA0005.jpg',
+        'IMG-20230806-WA0001.jpg',
+        '20230807_160239.jpg',
+        '20230807_192202.jpg',
+        'IMG-20230807-WA0027.jpg',
+        '20230808_120837.jpg',
+        'IMG-20230808-WA0025.jpg',
+        'IMG-20230808-WA0031.jpg',
+        '20230809_113252.jpg',
+        '20230809_113356.jpg',
+        '20230809_115005.jpg',
+        '20230809_135057.jpg',
+        '20230809_135101.jpg',
+        'IMG-20230810-WA0009.jpg',
+        '20230811_125045.jpg',
+        '20230811_161710.jpg',
+        '20230811_162718.jpg',
+        'IMG-20230811-WA0102.jpg',
+        'IMG-20230811-WA0109.jpg',
+        'IMG-20230811-WA0115.jpg',
+        'IMG-20230811-WA0125.jpg',
+        'IMG-20230811-WA0154.jpg',
+        '20230812_131247.jpg',
+        '20230812_175458.jpg',
+        '20230812_175503.jpg',
+        '20230812_202444.jpg',
+        'IMG-20230815-WA0028.jpg',
+        '20230818_152227.jpg',
+        '20230818_153519.jpg',
+        '20230821_091135.jpg',
+        'IMG-20230822-WA0006.jpg',
+        'IMG-20231222-WA0003.jpg',
+        'IMG-20240108-WA0002.jpg',
+        '20240629_150253.jpg',
+        'IMG-20250221-WA0007.jpg',
+        '8c3c1578-bb44-42f1-ae00-10c467b85af1.jpg',
+        '20250703_174117.jpg',
+        '20250707_215450.jpg',
+        'IMG-20250707-WA0009.jpg',
+        '20250708_162439.jpg',
+        '20250708_174400.jpg',
+        '20250708_174741.jpg',
+        '20250708_175331.jpg',
+        '20250708_184526.jpg',
+        '20250709_145904.jpg',
+        '20250709_150115.jpg',
+        '20250709_150248.jpg',
+        'IMG-20250709-WA0010.jpg',
+        '20250709_155342.jpg',
+        '20250710_233520.jpg',
+        '20250711_184530.jpg',
+        '20250711_185023.jpg',
+        '20250711_190320.jpg',
+        '20250711_190347.jpg',
+        '20250711_191243.jpg',
+        '20250712_093557.jpg',
+        '20250712_095841.jpg',
+        'IMG-20250712-WA0026.jpg',
+        'IMG-20251108-WA0016.jpg',
+        'image-20.png',
+        'Screenshot_20260522_193627_WhatsApp.jpg',
+        'Screenshot_20260522_193702_WhatsApp.jpg',
+        'Screenshot_20260522_193850_WhatsApp.jpg',
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox();
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function closeLightboxOnBg(e) {
+        if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    function navigate(dir) {
+        currentIndex = (currentIndex + dir + photos.length) % photos.length;
+        updateLightbox();
+    }
+
+    function updateLightbox() {
+        document.getElementById('lightboxImg').src = photos[currentIndex];
+        document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('lightbox').classList.contains('open')) return;
+        if (e.key === 'ArrowRight') navigate(1);
+        if (e.key === 'ArrowLeft')  navigate(-1);
+        if (e.key === 'Escape')     closeLightbox();
+    });
+
+    const colors = ['#c084fc', '#f472b6', '#fbbf24', '#60a5fa', '#34d399'];
+    const container = document.getElementById('confettiContainer');
+    for (let i = 0; i < 35; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti';
+        el.style.cssText = `
+            left: ${Math.random() * 100}%;
+            width: ${4 + Math.random() * 6}px;
+            height: ${4 + Math.random() * 6}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+            animation-duration: ${5 + Math.random() * 8}s;
+            animation-delay: ${Math.random() * 6}s;
+        `;
+        container.appendChild(el);
+    }
+</script>
+</body>
+</html>
