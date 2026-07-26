@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    const card = document.getElementById('businessCard');
+
+    // Flip card on click
+    card.addEventListener('click', function () {
+        card.classList.toggle('is-flipped');
+    });
+
+    // Support keyboard accessibility (Space / Enter to flip)
+    card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+            card.classList.toggle('is-flipped');
+        }
     });
 });
