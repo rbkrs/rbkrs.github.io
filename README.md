@@ -1,43 +1,6 @@
 <div align="center">
 
-# 🌐 Portfolio Website
-
-[![Website](https://img.shields.io/badge/🌐_Live_Site-robkras.com-blue?style=for-the-badge)](https://robkras.com)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-rbkrs.github.io-black?style=for-the-badge&logo=github)](https://rbkrs.github.io)
-
-</div>
-
----
-
-## 🛠️ Technical Stack
-
-```
-Programming Languages: Python, C, C++, Scala, Assembly
-ML Frameworks: TensorFlow, PyTorch, Keras, scikit-learn
-Data Science: NumPy, Pandas, Matplotlib, Seaborn
-NLP Tools: HuggingFace Transformers, spaCy
-Databases: MySQL, SQL
-Tools: Git, Docker, Jupyter Notebooks
-```
-
-## 📂 Project Categories
-
-### 🏆 **Kaggle Competitions**
-- Competition solutions and rankings
-- Model performance analysis
-- Methodology documentation
-
-### 🤖 **Machine Learning Projects**
-- Predictive modeling implementations
-- Neural network architectures
-- Algorithm comparisons
-
-### 📊 **Data Analysis & Visualization**
-- Interactive data exploration
-- Statistical analysis reports
-- Custom visualization tools
-
----
+My hobby is solving problems & my occupation is professional problem solver
 
 ## 📞 Connect With Me
 
