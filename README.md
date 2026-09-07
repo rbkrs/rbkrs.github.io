@@ -2,7 +2,7 @@
 
 My hobby is solving problems & my occupation is professional problem solver
 
-## 📞 Connect With Me
+## Let's connect
 
 <div align="center">
 
@@ -12,16 +12,3 @@ My hobby is solving problems & my occupation is professional problem solver
 [![Kaggle](https://img.shields.io/badge/Kaggle-robkraseu-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/robkraseu)
 
 </div>
-
----
-
-## 📄 License
-
-<div align="center">
-
-This project is open source and available under the [MIT License](LICENSE).
-
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-
-</div>
-
