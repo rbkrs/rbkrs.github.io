@@ -639,6 +639,11 @@ body.dark-mode .theme-toggle .icon-sun { display: block; }
     color: var(--text-muted);
 }
 
+.hit-counter {
+    font-family: var(--font-mono);
+    opacity: 0.5;
+}
+
 .footer-links {
     display: flex;
     gap: 1.25rem;

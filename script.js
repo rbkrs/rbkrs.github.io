@@ -46,6 +46,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // ---- Hit counter (private: just a number, no label) ----
+    var counterEl = document.querySelector('.hit-counter');
+    if (counterEl) {
+        fetch('https://abacus.jasoncameron.dev/hit/robkras.com/homepage')
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data && typeof data.value !== 'undefined') {
+                    counterEl.textContent = data.value;
+                }
+            })
+            .catch(function () {});
+    }
+
     // ---- Legacy: flip-card business card (only present on older pages) ----
     var card = document.getElementById('businessCard');
     if (card) {
