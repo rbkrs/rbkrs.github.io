@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaggriculture agent</title>
+<style>body{font-family:system-ui,sans-serif;max-width:1000px;margin:0 auto;padding:1.5rem}pre{background:#f6f7fb;border:1px solid #e3e6ec;border-radius:8px;padding:1rem;overflow-x:auto;font-size:13px;line-height:1.45}</style>
+</head><body><p style="font-family:system-ui,sans-serif;margin:1rem 1.5rem"><a href="../../index.html#projects">&larr; Back to projects</a></p><h1>Kaggriculture agent</h1><p>Current state of <code>main.py</code>.</p><pre><code>LAND_COSTS = {1: 1000, 2: 2000, 3: 4000}  # cost of the n-th quadrant bought beyond NW
+
+# v6: land only gets bought once the land we already have is nearly fully
+# planted/built (buying tiles we can&#x27;t use yet is dead capital), and capped
+# at 2 extra quadrants (3 total, never the 4th/SE). This came from watching
+# top replays: strong players stop expanding and work fewer tiles harder
+# instead. Locally validated head-to-head against the prior (day+cash-only,
+# 4-quadrant) trigger: 7/10 wins, avg margin +3737. See findings.txt.
+LAND_UTILIZATION_TRIGGER = 0.85
+MAX_EXTRA_QUADRANTS = 2
+
+TARGET_HANDS = 8
+# Realistic per-unit daily service capacity: water + harvest (which may take
+# several actions per tile) + travel between tiles, out of 24 turns/day.
+PLANTS_PER_UNIT_CAPACITY = 4
+LAND_SURPLUS_TARGET = 500
+MIN_CASH_RESERVE = 300  # never let discretionary spending push money below this
+LAND_MIN_DAY = 3  # let income establish before committing to more land
+PHASE1_END_DAY = 10
+ANIMAL_PHASE_DAY = 0
+PHASE1_CROPS = [&quot;CARROT&quot;, &quot;TOMATO&quot;]
+PHASE2_CROPS = [&quot;STRAWBERRY&quot;, &quot;STRAWBERRY&quot;, &quot;STRAWBERRY&quot;, &quot;TOMATO&quot;, &quot;TOMATO&quot;, &quot;MELON&quot;]
+SEED_COST = {&quot;WHEAT&quot;: 10, &quot;CARROT&quot;: 20, &quot;TOMATO&quot;: 50, &quot;STRAWBERRY&quot;: 100, &quot;MELON&quot;: 80}
+
+# Tested and rejected: shifting the mix toward wheat/carrot and trickle-
+# selling premium goods (on the theory that mirrored opponents dumping the
+# same crops crash the shared market) measured WORSE locally (914-2941 vs
+# starter&#x27;s ~3400s, down from 3672-13825) than just selling everything
+# immediately and reinvesting fast. The reinvestment-velocity flywheel from
+# v3 outweighs the glut-avoidance benefit against a general opponent pool.
+# See findings.txt.
+PREMIUM_ITEMS = set()
+SELL_TRICKLE_FRACTION = 1.0
+SELL_TRICKLE_MIN = 0
+
+# v6: both goose and cow are pursued from day 0 (ANIMAL_PHASE_DAY = 0 above),
+# not gated behind a large cash cushion -- watching top replays showed
+# strong players building 3-4 animal structures immediately, in parallel
+# with their first crops, not as a late-game upside add-on. try_spend&#x27;s cash
+# reserve floor already prevents this from starving other spending when
+# money is genuinely tight. Locally validated head-to-head against the
+# prior (day-15, cow-gated-behind-$5000) version: 9/10 wins, avg margin
+# +18641 -- the single biggest lever found this session. See findings.txt.
+#
+# v7: v6&#x27;s real (non-local) episodes showed our animal count flatlining at
+# exactly MAX_GOOSE+MAX_COW=8 by day ~9 in every game and never growing again,
+# while opponents who beat us badly kept scaling PASTURE/COW well past that
+# (10-14 by day 27) and largely skipped GOOSE entirely (coop=0 in 2 of 3
+# losses). Cow also has a better steady-state $/day than goose (0.5/day x
+# $160 vs 1/day x $50 = $80 vs $50, for a higher but still fast-payback $400
+# vs $300 cost), so this looked like a big lever: raise MAX_COW well past the
+# old cap and give cow first claim on cash/tiles.
+#
+# It measured badly, repeatedly, in local self-play against unmodified v6:
+# MAX_COW=16 with animals funded before land: 0/10, avg margin -17885 (16
+# pastures + 3 coops crowded a 25-tile starting quadrant, starving the crops
+# that were actually earning money). Tying the cap to unlocked-land size
+# instead of a flat number: still 0/10. MAX_COW=10 even after fixing a real
+# bug this surfaced (see WHEAT_BUY_TRIGGER note below): still 1/10, -8773. A
+# sweep of MAX_COW in {4,5,6,8,10} vs unmodified v6 showed avg margin falling
+# monotonically as the cap rises past 4 -- more cows is a net loss once our
+# own crop/land economy is already using the land well, contradicting the
+# real-episode read that &quot;more cows won.&quot; Likely reconciliation: those
+# opponents were probably ahead for other reasons too (see the v6 &quot;Moritz
+# Huber&quot; counter-example in findings.txt), and we were comparing ourselves to
+# a mix of real strategies while self-play only tells us how a change fares
+# against our OWN crop-heavy style specifically. Trusted the controlled local
+# measurement over the correlational real-replay read.
+#
+# What DID hold up locally: MAX_COW left at 4 but MAX_GOOSE trimmed to 3 (one
+# fewer coop, freeing a tile/cash for crops) with COW given first claim on
+# any shared cash/tile via ANIMAL_TYPES order -- 9/15 wins vs unmodified v6,
+# avg margin +3662. Small, but real and consistent, unlike every larger-cap
+# variant above. See findings.txt.
+ANIMAL_TYPES = [&quot;COW&quot;, &quot;GOOSE&quot;]
+ANIMAL_STRUCTURE = {&quot;GOOSE&quot;: &quot;COOP&quot;, &quot;COW&quot;: &quot;PASTURE&quot;}
+ANIMAL_COST = {&quot;GOOSE&quot;: 300, &quot;COW&quot;: 400}
+MAX_GOOSE = 3
+MAX_COW = 4
+WHEAT_FEED_BATCH = 10  # wheat picked up per shed trip to feed animals
+WHEAT_BUY_TRIGGER = 10  # restock feed once shed wheat falls below this
+WIND_DOWN_DAY = 28  # stop new investment and liquidate everything near season end
+
+# Persists across turns within one game process (module-level state).
+_state = {&quot;plant_idx&quot;: 0}
+
+
+def crop_mix(day):
+    return PHASE1_CROPS if day &lt; PHASE1_END_DAY else PHASE2_CROPS
+
+
+def agent(obs):
+    player = obs[&quot;player&quot;]
+    me = obs[&quot;farms&quot;][player]
+    private = obs[&quot;private&quot;]
+    day = obs[&quot;day&quot;]
+    tiles = me[&quot;tiles&quot;]
+    board_size = len(tiles)
+
+    shed = private[&quot;shed&quot;]
+    seeds = private[&quot;seeds&quot;]
+    inventories = private[&quot;inventories&quot;]
+    unlocked = me[&quot;unlocked_quadrants&quot;]
+    money = me[&quot;money&quot;]
+
+    farmer_pos = tuple(me[&quot;farmer&quot;])
+    hand_positions = [tuple(p) for p in me[&quot;hands&quot;]]
+    n_units = 1 + len(hand_positions)
+    unit_positions = [farmer_pos] + hand_positions
+    unit_invs = [inventories[i] if i &lt; len(inventories) else {} for i in range(n_units)]
+
+    def step_towards(cur, target):
+        cx, cy = cur
+        tx, ty = target
+        dx, dy = tx - cx, ty - cy
+        if dx == 0 and dy == 0:
+            return &quot;PASS&quot;
+        if abs(dx) &gt;= abs(dy):
+            return &quot;EAST&quot; if dx &gt; 0 else &quot;WEST&quot;
+        return &quot;SOUTH&quot; if dy &gt; 0 else &quot;NORTH&quot;
+
+    half = board_size // 2
+    shed_adjacent = [(half - 1, half - 1), (half, half - 1), (half - 1, half), (half, half)]
+
+    def nearest_shed_tile(pos):
+        return min(shed_adjacent, key=lambda p: abs(p[0] - pos[0]) + abs(p[1] - pos[1]))
+
+    # ---------------- scan the farm ----------------
+    weed_tiles, water_jobs, harvest_jobs, empty_tiles = [], [], [], []
+    empty_structs, feed_jobs, animal_harvest_jobs, fert_jobs, care_jobs = [], [], [], [], []
+    occupied_structs = 0
+    coop_count = 0
+    pasture_count = 0
+    active_plant_count = 0
+    unlocked_tile_count = 0  # drives land_utilization for the land-buy gate below
+
+    for y in range(board_size):
+        for x in range(board_size):
+            t = tiles[y][x]
+            if t is None:
+                empty_tiles.append((x, y))
+                unlocked_tile_count += 1
+            elif t == &quot;LOCKED&quot;:
+                continue
+            elif isinstance(t, dict):
+                unlocked_tile_count += 1
+                kind = t.get(&quot;kind&quot;)
+                if kind == &quot;WEED&quot;:
+                    weed_tiles.append((x, y))
+                elif kind == &quot;PLANT&quot;:
+                    active_plant_count += 1
+                    if not t.get(&quot;watered_today&quot;, False):
+                        water_jobs.append((x, y))
+                    if t.get(&quot;yield_units&quot;, 0) &gt; 0:
+                        harvest_jobs.append((x, y))
+                elif kind in (&quot;COOP&quot;, &quot;PASTURE&quot;):
+                    if kind == &quot;COOP&quot;:
+                        coop_count += 1
+                    else:
+                        pasture_count += 1
+                    if t.get(&quot;animal&quot;) is None:
+                        empty_structs.append((x, y, kind))
+                    else:
+                        occupied_structs += 1
+                        if not t.get(&quot;fed_today&quot;, False):
+                            feed_jobs.append((x, y))
+                        if t.get(&quot;yield_units&quot;, 0) &gt; 0:
+                            animal_harvest_jobs.append((x, y))
+                        if t.get(&quot;fertilizer_available&quot;, False):
+                            fert_jobs.append((x, y))
+                        if not t.get(&quot;cared_today&quot;, False):
+                            care_jobs.append((x, y))
+
+    animal_phase = day &gt;= ANIMAL_PHASE_DAY
+    n_structs_existing = len(empty_structs) + occupied_structs
+
+    # Reserve tiles for animal structures before planting claims every empty
+    # tile, otherwise crops always win the empty-tile race and coops never
+    # get built. Reserving the full cap&#x27;s worth of tiles immediately would
+    # still monopolize the board before we can afford animals to fill them,
+    # so build only a small buffer of empty (unoccupied) structures ahead of
+    # current cash-limited demand -- the buffer refills as animals get
+    # placed, so building tracks the real bottleneck (cash, via try_spend
+    # below) rather than front-loading land.
+    COW_BUILD_AHEAD = 3
+    GOOSE_BUILD_AHEAD = 1
+    empty_cow_structs = sum(1 for s in empty_structs if s[2] == &quot;PASTURE&quot;)
+    empty_goose_structs = sum(1 for s in empty_structs if s[2] == &quot;COOP&quot;)
+    build_plan = []  # list of (pos, animal_type)
+    if animal_phase:
+        if pasture_count &lt; MAX_COW and empty_cow_structs &lt; COW_BUILD_AHEAD:
+            need = min(MAX_COW - pasture_count, COW_BUILD_AHEAD - empty_cow_structs)
+            for pos in empty_tiles[:need]:
+                build_plan.append((pos, &quot;COW&quot;))
+        if coop_count &lt; MAX_GOOSE and empty_goose_structs &lt; GOOSE_BUILD_AHEAD:
+            start = len(build_plan)
+            need = min(MAX_GOOSE - coop_count, GOOSE_BUILD_AHEAD - empty_goose_structs)
+            for pos in empty_tiles[start : start + need]:
+                build_plan.append((pos, &quot;GOOSE&quot;))
+    build_reserve = [pos for pos, _ in build_plan]
+    plantable_tiles = [p for p in empty_tiles if p not in build_reserve]
+
+    # Cap how many tiles we let stay actively planted at once. HARVEST does
+    # not necessarily drain a tile&#x27;s whole yield in a single action (a crop
+    # can need several harvest calls), hands don&#x27;t exist yet during hour 0
+    # of each day, and travel between tiles costs turns too -- so real
+    # per-day service capacity per unit is well under 24 water-or-harvest
+    # actions. Planting more tiles than that lets watering fall behind,
+    # which cascades into weeds (observed: seeds stuck at the cash floor for
+    # most of the game had 14-18 weeds by day 8 from exactly this). Cap
+    # total simultaneously-growing tiles instead of always filling every
+    # empty one.
+    max_active_plants = (TARGET_HANDS + 1) * PLANTS_PER_UNIT_CAPACITY
+    plant_room = max(0, max_active_plants - active_plant_count)
+    plantable_tiles = plantable_tiles[:plant_room]
+
+    # ---------------- planting assignments (seed-budget aware) ----------------
+    mix = crop_mix(day)
+    seed_budget = {c: seeds.get(c, 0) for c in set(mix)}
+    plant_assignments = {}
+    idx = _state[&quot;plant_idx&quot;]
+    for pos in plantable_tiles:
+        for _try in range(len(mix)):
+            crop = mix[idx % len(mix)]
+            idx += 1
+            if seed_budget.get(crop, 0) &gt; 0:
+                plant_assignments[pos] = crop
+                seed_budget[crop] -= 1
+                break
+    _state[&quot;plant_idx&quot;] = idx
+
+    # ---------------- unit assignment ----------------
+    assigned = [None] * n_units
+
+    # FEED requires the unit to be physically carrying wheat (unlike seeds,
+    # which are auto-available). Handle it as its own pickup -&gt; carry -&gt; feed
+    # pipeline so animals don&#x27;t starve and escape while we wait on a generic
+    # job match.
+    pending_feed = list(feed_jobs)
+
+    for u in range(n_units):
+        if not pending_feed:
+            break
+        pos = unit_positions[u]
+        if unit_invs[u].get(&quot;WHEAT&quot;, 0) &gt; 0 and pos in pending_feed:
+            assigned[u] = [&quot;FEED&quot;]
+            pending_feed.remove(pos)
+
+    for u in range(n_units):
+        if assigned[u] is not None or not pending_feed:
+            continue
+        if unit_invs[u].get(&quot;WHEAT&quot;, 0) &gt; 0:
+            pos = unit_positions[u]
+            target = min(pending_feed, key=lambda p: abs(p[0] - pos[0]) + abs(p[1] - pos[1]))
+            assigned[u] = [step_towards(pos, target)]
+            pending_feed.remove(target)
+
+    if pending_feed:
+        # Nobody is carrying wheat: send one idle unit to fetch a batch from the shed.
+        for u in range(n_units):
+            if assigned[u] is not None:
+                continue
+            if shed.get(&quot;WHEAT&quot;, 0) &lt;= 0:
+                break
+            pos = unit_positions[u]
+            target = nearest_shed_tile(pos)
+            if pos == target:
+                assigned[u] = [&quot;PICKUP&quot;, &quot;WHEAT&quot;, WHEAT_FEED_BATCH]
+            else:
+                assigned[u] = [step_towards(pos, target)]
+            break
+
+    # Animal placement: a unit already carrying an animal walks it to a
+    # matching empty structure and places it; otherwise send an idle unit to
+    # pick one up from the shed.
+    def animal_in_inv(inv):
+        for a in ANIMAL_TYPES:
+            if inv.get(a, 0) &gt; 0:
+                return a
+        return None
+
+    for u in range(n_units):
+        if assigned[u] is not None or not empty_structs:
+            continue
+        carried = animal_in_inv(unit_invs[u])
+        if not carried:
+            continue
+        struct_kind = ANIMAL_STRUCTURE[carried]
+        target = None
+        for s in empty_structs:
+            if s[2] == struct_kind:
+                target = (s[0], s[1])
+                break
+        if target is None:
+            continue
+        pos = unit_positions[u]
+        if pos == target:
+            assigned[u] = [&quot;PLACE&quot;, carried]
+        else:
+            assigned[u] = [step_towards(pos, target)]
+        empty_structs.remove((target[0], target[1], struct_kind))
+
+    if animal_phase and empty_structs:
+        for a in ANIMAL_TYPES:
+            struct_kind = ANIMAL_STRUCTURE[a]
+            if not any(s[2] == struct_kind for s in empty_structs):
+                continue
+            if shed.get(a, 0) &lt;= 0:
+                continue
+            for u in range(n_units):
+                if assigned[u] is not None:
+                    continue
+                pos = unit_positions[u]
+                target = nearest_shed_tile(pos)
+                if pos == target:
+                    assigned[u] = [&quot;PICKUP&quot;, a, 1]
+                else:
+                    assigned[u] = [step_towards(pos, target)]
+                break
+            break
+
+    # ---------------- generic prioritized job list for everyone else ----------------
+    jobs = []
+    for p in weed_tiles:
+        jobs.append((0, p, [&quot;DIG&quot;]))
+    for p in water_jobs:
+        jobs.append((1, p, [&quot;WATER&quot;]))
+    for p in harvest_jobs:
+        jobs.append((2, p, [&quot;HARVEST&quot;]))
+    for p in animal_harvest_jobs:
+        jobs.append((2, p, [&quot;HARVEST&quot;]))
+    for p in fert_jobs:
+        jobs.append((2, p, [&quot;COLLECT_FERTILIZER&quot;]))
+    for pos, crop in plant_assignments.items():
+        jobs.append((3, pos, [&quot;PLANT&quot;, crop]))
+    for pos, animal_type in build_plan:
+        build_kind = ANIMAL_STRUCTURE[animal_type]
+        jobs.append((4, pos, [&quot;BUILD_COOP&quot; if build_kind == &quot;COOP&quot; else &quot;BUILD_PASTURE&quot;]))
+    for p in care_jobs:
+        jobs.append((5, p, [&quot;CARE&quot;]))
+
+    jobs_by_pri = sorted(jobs, key=lambda j: j[0])
+    used_job_idx = set()
+
+    pos_to_job = {}
+    for ji, (pri, pos, act) in enumerate(jobs_by_pri):
+        if pos not in pos_to_job:
+            pos_to_job[pos] = ji
+
+    for u in range(n_units):
+        if assigned[u] is not None:
+            continue
+        pos = unit_positions[u]
+        if pos in pos_to_job and pos_to_job[pos] not in used_job_idx:
+            ji = pos_to_job[pos]
+            assigned[u] = jobs_by_pri[ji][2]
+            used_job_idx.add(ji)
+
+    for u in range(n_units):
+        if assigned[u] is not None:
+            continue
+        pos = unit_positions[u]
+        best_ji, best_key = None, None
+        for ji, (pri, jpos, act) in enumerate(jobs_by_pri):
+            if ji in used_job_idx:
+                continue
+            d = abs(jpos[0] - pos[0]) + abs(jpos[1] - pos[1])
+            key = (pri, d)
+            if best_key is None or key &lt; best_key:
+                best_ji, best_key = ji, key
+        if best_ji is not None:
+            used_job_idx.add(best_ji)
+            _, jpos, act = jobs_by_pri[best_ji]
+            assigned[u] = act if pos == jpos else [step_towards(pos, jpos)]
+        else:
+            assigned[u] = [&quot;PASS&quot;]
+
+    farmer_action = assigned[0]
+    hand_actions = assigned[1:]
+
+    # ---------------- market orders (budgeted against a cash reserve) ----------------
+    market_orders = []
+    available = [money]  # boxed so the nested helper can mutate it
+
+    def try_spend(cost):
+        if cost &lt;= 0:
+            return True
+        if available[0] - cost &gt;= MIN_CASH_RESERVE:
+            available[0] -= cost
+            return True
+        return False
+
+    def fib_cost(n):
+        a, b = 1, 1
+        for _ in range(n):
+            a, b = b, a + b
+        return a
+
+    # Keep enough wheat in the shed to feed animals, and only sell the rest.
+    # Must stay above the buy trigger or we&#x27;d sell down to the reserve and
+    # immediately rebuy, wasting money on a pointless sell/buy cycle -- the
+    # buy trigger below scales with structure count, so the sell reserve must
+    # scale with it too (a bug here previously decoupled them: buy trigger
+    # rose with animal count but the sell reserve stayed flat, so every cycle
+    # we bought wheat up to the higher trigger then immediately sold most of
+    # it back down to the old flat reserve, burning cash on the spread every
+    # turn -- see findings.txt). Sell everything (no reserve) once the season
+    # is winding down, since unsold shed inventory doesn&#x27;t count towards the
+    # final score.
+    wheat_buy_trigger = max(WHEAT_BUY_TRIGGER, n_structs_existing * 2)
+    if not animal_phase or day &gt;= WIND_DOWN_DAY:
+        wheat_reserve = 0
+    else:
+        wheat_reserve = wheat_buy_trigger + 5
+
+    # If the shed is getting full, stop trickling and sell everything --
+    # losing produce to shed-cap overflow is worse than a bad price.
+    shed_total = sum(v for k, v in shed.items() if k not in ANIMAL_TYPES)
+    shed_near_full = shed_total &gt;= 80
+
+    for item, qty in shed.items():
+        if item in ANIMAL_TYPES or qty &lt;= 0:
+            continue
+        sell_qty = qty
+        if item == &quot;WHEAT&quot;:
+            sell_qty = max(0, qty - wheat_reserve)
+        elif item in PREMIUM_ITEMS and day &lt; WIND_DOWN_DAY and not shed_near_full:
+            # Trickle premium goods out instead of dumping the whole stack in
+            # one order, so the price has a chance to drift back up between
+            # sales instead of getting driven straight to the $1 floor.
+            sell_qty = max(SELL_TRICKLE_MIN, int(qty * SELL_TRICKLE_FRACTION))
+            sell_qty = min(sell_qty, qty)
+        if sell_qty &gt; 0:
+            market_orders.append([&quot;SELL&quot;, item, sell_qty])
+
+    # Tested and rejected: scaling the hand target down to land size (e.g.
+    # total_tiles // 10) to save cash for land purchases on low-income seeds
+    # measured MUCH worse (18/20 losses vs starter, avg 1111) than a flat
+    # target -- throughput from enough hands working the tiles you already
+    # have matters more than the marginal cash saved. See findings.txt.
+    hires_today = me.get(&quot;hires_today&quot;, 0)
+    n = hires_today
+    while n &lt; TARGET_HANDS:
+        if try_spend(fib_cost(n)):
+            market_orders.append([&quot;HIRE&quot;])
+            n += 1
+        else:
+            break
+
+    if day &lt; WIND_DOWN_DAY:
+        # Land only once what we already have is nearly full (see
+        # LAND_UTILIZATION_TRIGGER above) -- buying tiles we can&#x27;t use yet is
+        # dead capital, and capped at MAX_EXTRA_QUADRANTS (3 total, never the
+        # 4th/SE).
+        n_extra = len(unlocked) - 1
+        land_utilization = (active_plant_count + n_structs_existing) / max(1, unlocked_tile_count)
+        if day &gt;= LAND_MIN_DAY and n_extra &lt; MAX_EXTRA_QUADRANTS and land_utilization &gt;= LAND_UTILIZATION_TRIGGER:
+            next_cost = LAND_COSTS[n_extra + 1]
+            if available[0] - next_cost - MIN_CASH_RESERVE &gt;= LAND_SURPLUS_TARGET:
+                if try_spend(next_cost):
+                    market_orders.append([&quot;BUY_LAND&quot;])
+
+        # Size the seed buffer to actual land, not a flat number -- otherwise
+        # a small quadrant gets over-bought (starving land purchases) or a
+        # fully unlocked board gets under-bought (leaving it half-empty).
+        total_plantable = len(plantable_tiles)
+        for crop in sorted(set(mix)):
+            frac = mix.count(crop) / len(mix)
+            target = max(4, int(total_plantable * frac * 1.5) + 4)
+            have = seeds.get(crop, 0)
+            need = max(0, target - have)
+            if need &lt;= 0:
+                continue
+            unit_cost = SEED_COST[crop]
+            afford_n = min(need, max(0, (available[0] - MIN_CASH_RESERVE) // unit_cost))
+            if afford_n &gt; 0:
+                try_spend(afford_n * unit_cost)
+                market_orders.append([&quot;BUY_SEED&quot;, crop, afford_n])
+
+        if animal_phase:
+            # Wheat feed demand scales with how many structures exist, not a
+            # flat batch -- more animals all eating daily needs more buffer
+            # than the old flat trigger/quantity sized for ~8 animals.
+            # (wheat_buy_trigger computed above, shared with the sell reserve.)
+            wheat_buy_qty = max(20, n_structs_existing * 3)
+            if n_structs_existing &gt; 0 and shed.get(&quot;WHEAT&quot;, 0) &lt; wheat_buy_trigger:
+                afford_qty = min(wheat_buy_qty, max(0, (available[0] - MIN_CASH_RESERVE) // 25))
+                if afford_qty &gt; 0 and try_spend(afford_qty * 25):
+                    market_orders.append([&quot;BUY_PRODUCT&quot;, &quot;WHEAT&quot;, afford_qty])
+            for a in ANIMAL_TYPES:
+                struct_kind = ANIMAL_STRUCTURE[a]
+                free_structs = sum(1 for s in empty_structs if s[2] == struct_kind)
+                carried = sum(inv.get(a, 0) for inv in unit_invs)
+                owned_or_incoming = shed.get(a, 0) + carried
+                if free_structs &gt; owned_or_incoming and try_spend(ANIMAL_COST[a]):
+                    market_orders.append([&quot;BUY_ANIMAL&quot;, a, 1])
+
+    market_orders = market_orders[:10]
+
+    return {&quot;farmer&quot;: farmer_action, &quot;hands&quot;: hand_actions, &quot;market&quot;: market_orders}
+</code></pre></body></html>
